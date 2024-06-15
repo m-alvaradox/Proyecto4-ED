@@ -1,0 +1,62 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    
+}
+.fondo{
+    -fx-background-color: #89D8FF  ;
+}
+
+.recuadro{
+    -fx-background-color: #F6F6F6 ;
+    -fx-border-radius:25px;
+    -fx-border-color:#808385;
+    -fx-background-radius:25px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0.5, 0, 0);
+    -fx-alignment:top-center;
+}
+
+.texto_login{
+    -fx-font-size:15px;
+    -fx-font-family:"Century";
+    -fx-font-weight: bold;
+    -fx-border-color:transparent;
+    -fx-background-radius:0px;
+    -fx-background-color: transparent;
+    -fx-border-radius:0px;
+}
+
+.boton_sinEstilo{
+    -fx-border-color:transparent;
+    -fx-background-radius:0px;
+    -fx-background-color: transparent;
+    -fx-border-radius:0px;
+    -fx-font-size:15px;
+    -fx-font-family:"Century";
+    -fx-pref-width: 135px;
+    -fx-pref-height: 19px;
+    -fx-text-fill:blue;
+    -fx-underline:true;
+}
+.boton_sinEstilo:hover{
+    -fx-cursor:hand;
+}
+.text-field{
+    -fx-border-color:gray;
+}
+.text-field:focused{
+    -fx-border-color:#89D8FF;
+}
+.boton_fondoAzul{
+    -fx-background-color:#5FC8FC;
+    -fx-text-fill:white;
+    -fx-font-family:"Arial Black";
+    -fx-font-size:14px;
+    -fx-text-effect: dropshadow(one-pass-box, red, 5, 0.0, 0, 0);  
+}
+
+.boton_fondoAzul:hover{
+    -fx-cursor:hand;
+}
