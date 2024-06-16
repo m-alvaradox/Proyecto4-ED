@@ -1,6 +1,7 @@
 package Objects;
 
 import Objects.Gender;
+import TDAS.ArrayList;
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -62,15 +63,8 @@ public class User implements Serializable {
     public static ArrayList<User> loadUsers() {
 
         ArrayList<User> users_list = new ArrayList<>();
-
+        
+        return users_list;
+       
     }
-    
-    
-
-     
-
-    
-
-
-
 }
