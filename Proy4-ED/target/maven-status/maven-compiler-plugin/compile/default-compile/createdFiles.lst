@@ -1,4 +1,6 @@
+com\espol\proy4\ed\App.class
+com\espol\proy4\ed\PrincipalController.class
 module-info.class
 com\espol\proy4\ed\IniciarSesionController.class
-com\espol\proy4\ed\App.class
 com\espol\proy4\ed\RegistroController.class
+com\espol\proy4\ed\CatalogoController.class
