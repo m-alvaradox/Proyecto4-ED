@@ -1,4 +1,4 @@
-package com.espol.proy4.ed;
+package FX;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
