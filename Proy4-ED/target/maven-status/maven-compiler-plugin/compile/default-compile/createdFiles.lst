@@ -1,8 +1,8 @@
+com\espol\proy4\ed\SecondaryController.class
 TDAS\List.class
+com\espol\proy4\ed\PrimaryController.class
 module-info.class
-FX\App.class
+com\espol\proy4\ed\App.class
 TDAS\ArrayList.class
-FX\PrimaryController.class
 Objects\User.class
 Objects\Gender.class
-FX\SecondaryController.class

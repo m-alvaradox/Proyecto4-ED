@@ -1,4 +1,4 @@
-package FX;
+package com.espol.proy4.ed;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
