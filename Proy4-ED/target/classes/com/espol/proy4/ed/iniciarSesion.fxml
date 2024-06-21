@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="fondo" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.IniciarSesionController">
+   <center>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="320.0" styleClass="recuadro" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../imagenes/carro-icono.png" />
+               </image>
+            </ImageView>
+            <Label styleClass="texto_login" text="Ingresa a tu cuenta" textAlignment="CENTER" />
+            <HBox alignment="TOP_CENTER" prefHeight="20.0" prefWidth="318.0">
+               <children>
+                  <Label styleClass="texto_login" text="o" />
+                  <Label />
+                  <Button mnemonicParsing="false" onAction="#registro" prefHeight="31.0" prefWidth="129.0" styleClass="boton_sinEstilo" text="Registrate aquí">
+                     <HBox.margin>
+                        <Insets left="-5.0" top="-5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox prefHeight="144.0" prefWidth="302.0">
+               <children>
+                  <TextField fx:id="user" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="160.0" promptText="Usuario">
+                     <VBox.margin>
+                        <Insets bottom="12.0" left="70.0" top="5.0" />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <PasswordField fx:id="password" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="160.0" promptText="Contraseña" styleClass="text-field">
+                     <VBox.margin>
+                        <Insets left="70.0" top="5.0" />
+                     </VBox.margin>
+                  </PasswordField>
+               </children>
+               <VBox.margin>
+                  <Insets left="8.0" right="8.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
+            <Button mnemonicParsing="false" onAction="#iniciarSesion" styleClass="boton_fondoAzul" text="Iniciar Sesión" />
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <ImageView fitHeight="116.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" BorderPane.alignment="TOP_CENTER">
+         <image>
+            <Image url="@../../../../imagenes/logo.png" />
+         </image>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
+      </ImageView>
+   </left>
+   <right>
+      <ImageView fitHeight="107.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" BorderPane.alignment="BOTTOM_CENTER">
+         <image>
+            <Image url="@../../../../imagenes/logo.png" />
+         </image>
+         <BorderPane.margin>
+            <Insets bottom="5.0" />
+         </BorderPane.margin>
+      </ImageView>
+   </right>
+</BorderPane>
