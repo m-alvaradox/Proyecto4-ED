@@ -39,7 +39,7 @@
                <children>
                   <Label styleClass="texto_principal" text="¿Qué deseas hacer hoy?" translateY="-20.0" />
                   <Button mnemonicParsing="false" onAction="#catalogo" styleClass="boton_fondoAzul" text="Ver catálogo" />
-                  <Button mnemonicParsing="false" styleClass="boton_fondoAzul" text="Crear una nueva venta" />
+                  <Button mnemonicParsing="false" onAction="#crearVenta" styleClass="boton_fondoAzul" text="Crear una nueva venta" />
                   <Button mnemonicParsing="false" styleClass="boton_fondoAzul" text="Ver mis vehículos" />
                </children>
             </VBox>

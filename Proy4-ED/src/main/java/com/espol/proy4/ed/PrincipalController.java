@@ -94,4 +94,9 @@ public class PrincipalController implements Initializable {
     private void catalogo() throws IOException {
         App.setRoot("catalogo");
     }
+    
+    @FXML
+    private void crearVenta() throws IOException {
+        App.setRoot("crearVenta");
+    }
 }

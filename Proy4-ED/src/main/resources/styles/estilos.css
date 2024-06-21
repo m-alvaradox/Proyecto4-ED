@@ -99,3 +99,22 @@
     -fx-background-color: transparent;
     -fx-border-radius:0px;
 }
+
+.comboBox_filtros{
+    -fx-border-color:#5FC8FC;
+    -fx-background-radius:25px;
+    -fx-border-radius:25px;
+    -fx-background-color:white;
+    -fx-font-size:13px;
+    -fx-font-family:"Century";
+    -fx-pref-width: 115px;
+    -fx-pref-height: 19px;
+}
+
+.caja_imagen{
+    -fx-border-color:#808385;
+    -fx-border-radius:50px;
+    -fx-background-color:white;
+    -fx-background-radius:25px;
+    -fx-font-family:"Arial";
+}

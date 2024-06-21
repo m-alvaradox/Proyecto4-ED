@@ -2,9 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -38,39 +37,35 @@
          <children>
             <HBox prefHeight="405.0" prefWidth="640.0">
                <children>
-                  <VBox prefHeight="394.0" prefWidth="167.0" spacing="40.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="402.0" prefWidth="165.0" spacing="40.0" style="-fx-border-width: 0 1px 0 0; -fx-border-color: #A5A5A5;">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="boton_fondoAzul" text="Buscar" />
-                        <SplitMenuButton mnemonicParsing="false" styleClass="boton_fondoAzul" text="Marca">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </SplitMenuButton>
-                        <SplitMenuButton mnemonicParsing="false" text="Modelo">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </SplitMenuButton>
-                        <SplitMenuButton mnemonicParsing="false" text="Rango">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
+                        <Button mnemonicParsing="false" styleClass="boton_fondoAzul" text="Buscar">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin></Button>
+                        <ComboBox fx:id="marcas" prefWidth="150.0" promptText="Marca" styleClass="comboBox_filtros">
+                           <VBox.margin>
+                              <Insets top="-5.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <ComboBox fx:id="modelos" prefWidth="150.0" promptText="Modelo" styleClass="comboBox_filtros" />
+                        <ComboBox fx:id="rango" prefWidth="150.0" promptText="Rango" styleClass="comboBox_filtros">
                            <VBox.margin>
                               <Insets bottom="-20.0" />
                            </VBox.margin>
-                        </SplitMenuButton>
-                        <TextField maxWidth="-Infinity" prefHeight="27.0" prefWidth="115.0" promptText="Desde">
+                        </ComboBox>
+                        <TextField maxWidth="-Infinity" prefHeight="27.0" prefWidth="81.0" promptText="Desde" styleClass="text-field">
                            <VBox.margin>
                               <Insets bottom="-20.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField maxWidth="-Infinity" prefHeight="27.0" prefWidth="116.0" promptText="Hasta" />
+                        <TextField maxWidth="-Infinity" prefHeight="27.0" prefWidth="83.0" promptText="Hasta">
+                           <VBox.margin>
+                              <Insets top="-10.0" />
+                           </VBox.margin></TextField>
                      </children>
                      <HBox.margin>
-                        <Insets left="10.0" top="10.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="394.0" prefWidth="467.0">
