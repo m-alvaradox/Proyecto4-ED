@@ -118,3 +118,11 @@
     -fx-background-radius:25px;
     -fx-font-family:"Arial";
 }
+
+.text-atributos{
+    -fx-font-family:"Trebuchet MS";
+    -fx-effect: dropshadow(three-pass-box, #FFD890, 2   , 1, 1, 1);
+    -fx-text-fill:#1683FF;
+    -fx-font-weight: bold;
+    -fx-font-size:16px;
+}

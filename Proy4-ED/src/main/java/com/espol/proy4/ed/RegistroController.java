@@ -36,6 +36,8 @@ public class RegistroController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
             String naci = fecha.getValue().format(formatter);
             String contra = password.getText();
+            
+            // Aquí se debe crear un usuario nuevo y añadirlo al archivo;
         } else {
             Alert alert= new Alert(AlertType.ERROR);
             alert.setHeaderText("Creación de cuenta");
