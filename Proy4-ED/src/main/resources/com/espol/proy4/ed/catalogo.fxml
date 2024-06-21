@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-border-width: 0 0 1px 0; -fx-border-color: #A5A5A5;" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.CatalogoController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="83.0" prefWidth="600.0" spacing="30.0" style="-fx-border-width: 0 0 1px 0; -fx-border-color: #A5A5A5;" styleClass="fondo" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="84.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <Label prefHeight="35.0" prefWidth="282.0" styleClass="mensaje_bienvenido" text="Catálogo de vehículos usados" translateX="-50.0" />
+            <ImageView fitHeight="39.0" fitWidth="39.0" onMouseClicked="#principal" pickOnBounds="true" preserveRatio="true" translateX="15.0">
+               <image>
+                  <Image url="@../../../../imagenes/home_icono.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="405.0" prefWidth="640.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="402.0" prefWidth="165.0" spacing="40.0" style="-fx-border-width: 0 1px 0 0; -fx-border-color: #A5A5A5;">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="boton_fondoAzul" text="Buscar">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin></Button>
+                        <ComboBox fx:id="marcas" prefWidth="150.0" promptText="Marca" styleClass="comboBox_filtros">
+                           <VBox.margin>
+                              <Insets top="-5.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <ComboBox fx:id="modelos" prefWidth="150.0" promptText="Modelo" styleClass="comboBox_filtros" />
+                        <ComboBox fx:id="rango" prefWidth="150.0" promptText="Rango" styleClass="comboBox_filtros">
+                           <VBox.margin>
+                              <Insets bottom="-20.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <TextField maxWidth="-Infinity" prefHeight="27.0" prefWidth="81.0" promptText="Desde" styleClass="text-field">
+                           <VBox.margin>
+                              <Insets bottom="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField maxWidth="-Infinity" prefHeight="27.0" prefWidth="83.0" promptText="Hasta">
+                           <VBox.margin>
+                              <Insets top="-10.0" />
+                           </VBox.margin></TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="394.0" prefWidth="467.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../imagenes/atras_icono.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="394.0" prefWidth="328.0">
+                           <children>
+                              <ImageView fitHeight="189.0" fitWidth="329.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="Marca y modelo" />
+                              <Label text="Año" />
+                              <Label text="Kilometraje" />
+                              <Label text="Ubicación" />
+                              <Label text="Precio" />
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="54.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../imagenes/siguiente_icono.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

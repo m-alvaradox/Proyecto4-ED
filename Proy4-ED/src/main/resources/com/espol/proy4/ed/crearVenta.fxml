@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.CrearVentaController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="83.0" prefWidth="600.0" spacing="30.0" style="-fx-border-width: 0 0 1px 0; -fx-border-color: #A5A5A5;" styleClass="fondo" stylesheets="@../../../../styles/estilos.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="84.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <Label prefHeight="35.0" prefWidth="282.0" styleClass="mensaje_bienvenido" text="Creación de un nuevo vehículo" translateX="-50.0" />
+            <ImageView fitHeight="39.0" fitWidth="39.0" onMouseClicked="#principal" pickOnBounds="true" preserveRatio="true" translateX="15.0">
+               <image>
+                  <Image url="@../../../../imagenes/home_icono.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane alignment="CENTER_LEFT">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="230.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="10.0" prefWidth="239.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="10.0" prefWidth="173.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="41.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="21.0" prefWidth="63.0" styleClass="texto_principal" text="Marca:" />
+                        <TextField fx:id="marca" prefHeight="25.0" prefWidth="130.0" styleClass="text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 0 1px 0 1px; -fx-border-color: #A5A5A5;" GridPane.columnIndex="1">
+                     <children>
+                        <Label prefHeight="21.0" prefWidth="74.0" styleClass="texto_principal" text="Modelo:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="modelo" prefHeight="25.0" prefWidth="141.0" styleClass="text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                     <children>
+                        <Label prefHeight="21.0" prefWidth="47.0" styleClass="texto_principal" text="Año:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="year" prefHeight="25.0" prefWidth="55.0" styleClass="text-field">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin></TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label styleClass="texto_principal" text="Motor:" />
+                        <TextField fx:id="motor" prefHeight="25.0" prefWidth="132.0" styleClass="text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 0 1px 0 1px; -fx-border-color: #A5A5A5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Label styleClass="texto_principal" text="Kilometraje:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="kilometraje" prefHeight="25.0" prefWidth="53.0" styleClass="text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <Label styleClass="texto_principal" text="Peso:">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="peso" prefHeight="27.0" prefWidth="53.0" styleClass="text-field">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin></TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <children>
+                        <Label styleClass="texto_principal" text="Transmisión:" />
+                        <TextField fx:id="transmision" prefHeight="27.0" prefWidth="103.0" styleClass="text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 0 1px 0 1px; -fx-border-color: #A5A5A5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label styleClass="texto_principal" text="Ubicación:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="ubicacion" prefHeight="27.0" prefWidth="121.0" styleClass="text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Label styleClass="texto_principal" text="Precio:">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="precio" prefHeight="27.0" prefWidth="58.0" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </GridPane>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="640.0" prefHeight="43.0" prefWidth="640.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btonSeleccionarImagen" mnemonicParsing="false" onAction="#addImage" styleClass="boton_fondoAzul" text="Añadir imágen">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <ScrollPane fitToWidth="true" hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="43.0" style="-fx-max-width: 480;" vbarPolicy="NEVER">
+                    <content>
+                      <AnchorPane prefHeight="29.0">
+                           <children>
+                              <HBox fx:id="imagenesPane" alignment="CENTER_LEFT" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" spacing="5.0">
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </ScrollPane>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="168.0" prefWidth="630.0" spacing="5.0">
+               <children>
+                  <VBox minHeight="-Infinity" prefHeight="168.0" prefWidth="477.0" style="-fx-border-color: #A5A5A5; -fx-border-width: 0 1px 0 0;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="452.0">
+                           <children>
+                              <Label lineSpacing="1.0" minHeight="-Infinity" prefHeight="41.0" prefWidth="251.0" styleClass="texto_principal" text="Historial de accidentes y servicios:" wrapText="true" />
+                              <ImageView fitHeight="26.0" fitWidth="26.0" onMouseClicked="#nuevoServicio" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../imagenes/mas.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-border-color: transparent; -fx-border-width: 0 0 0 0; -fx-max-width: 380;">
+                           <content>
+                              <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefWidth="425.0" translateX="10.0">
+                                 <children>
+                                    <VBox fx:id="paneHistorial" maxHeight="-Infinity" maxWidth="-Infinity" spacing="10.0">
+                                       <padding>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="168.0" prefWidth="330.0">
+                     <children>
+                        <VBox prefHeight="168.0" prefWidth="289.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="280.0" spacing="5.0">
+                                 <children>
+                                    <Label styleClass="texto_principal" text="Atributos adicionales:" />
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" onMouseClicked="#addAtributos" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../imagenes/mas.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity">
+                                <content>
+                                  <AnchorPane fx:id="listaAtributos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefWidth="220.0" translateX="10.0">
+                                       <children>
+                                          <VBox fx:id="paneAtributos" layoutX="-2.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" spacing="5.0">
+                                             <padding>
+                                                <Insets bottom="10.0" top="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                                 <VBox.margin>
+                                    <Insets right="5.0" top="3.0" />
+                                 </VBox.margin>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <Button mnemonicParsing="false" styleClass="boton_fondoAzul" text="Crear Vehículo" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="15.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+</BorderPane>
