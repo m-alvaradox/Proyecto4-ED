@@ -60,7 +60,7 @@ public class RegistroController {
             String naci = fecha.getValue().format(formatter);
             String contra = password.getText();
             
-            if(contains(user)) {
+            if(contains(user) == true) {
                 
                 Alert alert= new Alert(AlertType.ERROR);
                 alert.setHeaderText("Creación de cuenta");

@@ -1,6 +1,8 @@
 package TDAS;
 
-public class ArrayList<E> implements List<E>{
+import java.io.Serializable;
+
+public class ArrayList<E> implements List<E>, Serializable{
     private E[] elements = null; //arreglo de elementos genericos
     private int capacity = 100;
     private int effectiveSize;
