@@ -5,7 +5,9 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -15,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="fondo" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.RegistroController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="fondo" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.RegistroController">
    <center>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="311.0" prefWidth="450.0" styleClass="recuadro" BorderPane.alignment="CENTER">
          <children>
@@ -39,7 +41,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="Nombre:" />
-                        <TextField fx:id="nombre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="141.0" styleClass="text-field">
+                        <TextField fx:id="nombre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="141.0" promptText="ej: Juan" styleClass="text-field">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -52,7 +54,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
                         <Label text="Apellidos:" />
-                        <TextField fx:id="apellidos" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="191.0" styleClass="text-field">
+                        <TextField fx:id="apellidos" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="191.0" promptText="ej: Contreras" styleClass="text-field">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -61,8 +63,8 @@
                   </VBox>
                   <VBox GridPane.rowIndex="1">
                      <children>
-                        <Label text="Correo electrónico:" />
-                        <TextField fx:id="correo" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="174.0" styleClass="text-field">
+                        <Label text="Nuevo Usuario:" />
+                        <TextField fx:id="usuario" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="174.0" promptText="ej: jcontreras" styleClass="text-field">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -88,7 +90,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label text="Fecha de nacimiento:" />
-                        <DatePicker fx:id="fecha" styleClass="text-field">
+                        <DatePicker fx:id="fecha" promptText="DD/MM/YYYY" styleClass="text-field">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -98,6 +100,29 @@
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </VBox>
+                  <RadioButton fx:id="masculino" mnemonicParsing="false" text="Masculino" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" />
+                     </GridPane.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="genero" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="femenino" mnemonicParsing="false" text="Femenino" toggleGroup="$genero" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="5.0" top="30.0" />
+                     </GridPane.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="otro" mnemonicParsing="false" text="Otro" toggleGroup="$genero" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="100.0" top="8.0" />
+                     </GridPane.margin>
+                  </RadioButton>
+                  <Label text="Género:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" left="150.0" />
+                     </GridPane.margin>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets top="5.0" />

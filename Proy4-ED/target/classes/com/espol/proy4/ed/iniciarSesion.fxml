@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="fondo" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.IniciarSesionController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="fondo" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.IniciarSesionController">
    <center>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="320.0" styleClass="recuadro" BorderPane.alignment="CENTER">
          <children>
@@ -34,20 +34,17 @@
             </HBox>
             <VBox prefHeight="144.0" prefWidth="302.0">
                <children>
-                  <Label text="Correo Electrónico:" />
-                  <TextField fx:id="correo" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="230.0">
+                  <TextField fx:id="user" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="160.0" promptText="Usuario">
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets bottom="12.0" left="70.0" top="5.0" />
                      </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </TextField>
-                  <Label text="Contraseña:">
+                  <PasswordField fx:id="password" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="160.0" promptText="Contraseña" styleClass="text-field">
                      <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="160.0" styleClass="text-field">
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets left="70.0" top="5.0" />
                      </VBox.margin>
                   </PasswordField>
                </children>

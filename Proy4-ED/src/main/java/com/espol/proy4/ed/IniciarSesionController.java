@@ -1,13 +1,16 @@
 package com.espol.proy4.ed;
 
+import Objects.User;
+import TDAS.*;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class IniciarSesionController {
+    
     @FXML
-    private TextField correo;
+    private TextField user;
     @FXML
     private PasswordField password;
     
@@ -18,7 +21,7 @@ public class IniciarSesionController {
     
     @FXML
     private void iniciarSesion() throws IOException { // Aquí se debe verificar que exista el correo y contraseña en la base de datos
-        String correo1 = correo.getText();
+        String user1 = user.getText();
         String password1 = password.getText();
         App.setRoot("principal");
     }
