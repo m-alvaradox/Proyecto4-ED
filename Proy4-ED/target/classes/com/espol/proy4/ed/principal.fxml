@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.PrincipalController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.PrincipalController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="642.0" stylesheets="@../../../../styles/estilos.css">
          <top>
@@ -22,7 +22,7 @@
                         <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="35.0" prefWidth="282.0" styleClass="mensaje_bienvenido" text="¡Bienvenido/a  " translateX="-50.0" />
+                  <Label fx:id="msgwelcome" prefHeight="35.0" prefWidth="282.0" styleClass="mensaje_bienvenido" text="¡Bienvenido/a  " translateX="-50.0" />
                   <ImageView fitHeight="39.0" fitWidth="39.0" onMouseClicked="#abrir_configuracion" pickOnBounds="true" preserveRatio="true" translateX="26.0" translateY="-15.0">
                      <image>
                         <Image url="@../../../../imagenes/opcion.png" />
