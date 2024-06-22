@@ -38,7 +38,7 @@ public class IniciarSesionController {
         User valid_user = App.contains(user);
         
         if(valid_user != null && valid_user.getPassword().equals(password)) {
-            App.userlogged = valid_user;
+            App.userlogged = valid_user; // defino el usuario logeado
             System.out.println("Inicio de sesion exitoso");
             return true;
         }  

@@ -73,6 +73,7 @@ public class PrincipalController implements Initializable {
         alert.getButtonTypes().setAll(botonSi, botonNo);
         Optional<ButtonType> resultado = alert.showAndWait();
         if(resultado.isPresent()&& resultado.get() == botonSi){
+            App.userlogged = null; // usuario logeado sera null al cerrar sesion
             alert.close();
             App.setRoot("iniciarSesion");
         } else{
