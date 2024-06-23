@@ -109,7 +109,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" styleClass="botones_configuracion" text="Mi cuenta">
+                  <Button mnemonicParsing="false" onAction="#mostrar_perfil" styleClass="botones_configuracion" text="Mi cuenta">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -118,7 +118,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="194.0" styleClass="botones_configuracion" text="Ver favoritos">
+                  <Button mnemonicParsing="false" onAction="#mostrar_favoritos" prefHeight="31.0" prefWidth="194.0" styleClass="botones_configuracion" text="Ver favoritos">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>

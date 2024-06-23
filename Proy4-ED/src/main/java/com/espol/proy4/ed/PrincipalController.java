@@ -81,6 +81,16 @@ public class PrincipalController implements Initializable {
     }
     
     @FXML
+    private void mostrar_perfil() throws IOException {
+        App.setRoot("miperfil");
+    }
+    
+    @FXML
+    private void mostrar_favoritos() throws IOException {
+        App.setRoot("favoritos");
+    }
+    
+    @FXML
     private void siguiente() throws IOException { // Cambia la información
         imagen.setImage(new Image( "" ));
         modelo.setText("");

@@ -11,15 +11,15 @@ public class User implements Serializable {
     private String name;
     private String lastname;
     private String username;
-    private String naci;
+    private String date_birth;
     private Gender gender;
     private String password;
 
-    public User(String name, String lastname, String username, String naci, Gender gender, String password) {
+    public User(String name, String lastname, String username, String date_birth, Gender gender, String password) {
         this.name = name;
         this.lastname = lastname;
         this.username = username;
-        this.naci = naci;
+        this.date_birth = date_birth;
         this.gender = gender;
         this.password = password;
     }
@@ -64,5 +64,15 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }    
+    }
+
+    public String getDate_birth() {
+        return date_birth;
+    }
+
+    public void setDate_birth(String date_birth) {
+        this.date_birth = date_birth;
+    }
+
+    
 }

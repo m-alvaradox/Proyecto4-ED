@@ -22,6 +22,7 @@ public class App extends Application {
 
     private static Scene scene;
     public static String fileusers = "src\\main\\resources\\datos\\usuarios.ser";
+    public static String fileimages = "imagenes/";
     public static ArrayList<User> usuarios = loadUsers(fileusers);
     public static User userlogged = null;
 
