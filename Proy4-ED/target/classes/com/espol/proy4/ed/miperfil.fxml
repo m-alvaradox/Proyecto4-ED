@@ -17,76 +17,10 @@
          <top>
             <HBox alignment="CENTER" prefHeight="83.0" prefWidth="600.0" spacing="30.0" style="-fx-border-width: 0 0 1px 0; -fx-border-color: #A5A5A5;" styleClass="fondo" BorderPane.alignment="TOP_LEFT">
                <children>
-                  <ImageView fitHeight="84.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label fx:id="msgwelcome" prefHeight="35.0" prefWidth="282.0" styleClass="mensaje_bienvenido" text="¡Bienvenido/a  " translateX="-50.0" />
-                  <ImageView fitHeight="39.0" fitWidth="39.0" onMouseClicked="#abrir_configuracion" pickOnBounds="true" preserveRatio="true" translateX="26.0" translateY="-15.0">
-                     <image>
-                        <Image url="@../../../../imagenes/opcion.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </ImageView>
+                  <Label fx:id="msgwelcome" prefHeight="35.0" prefWidth="216.0" styleClass="mensaje_bienvenido" text="Mi perfil" translateX="-50.0" />
                </children>
             </HBox>
          </top>
-         <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" style="-fx-border-width: 0 1px 0 0; -fx-border-color: #A5A5A5;" BorderPane.alignment="CENTER">
-               <children>
-                  <Label styleClass="texto_principal" text="¿Qué deseas hacer hoy?" translateY="-20.0" />
-                  <Button mnemonicParsing="false" onAction="#catalogo" styleClass="boton_fondoAzul" text="Ver catálogo" />
-                  <Button mnemonicParsing="false" onAction="#crearVenta" styleClass="boton_fondoAzul" text="Crear una nueva venta" />
-                  <Button mnemonicParsing="false" styleClass="boton_fondoAzul" text="Ver mis vehículos" />
-               </children>
-            </VBox>
-         </center>
-         <right>
-            <VBox alignment="TOP_CENTER" prefHeight="397.0" prefWidth="338.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label styleClass="texto_principal" text="Carros en oferta">
-                     <VBox.margin>
-                        <Insets top="40.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox alignment="CENTER" prefHeight="364.0" prefWidth="338.0">
-                     <children>
-                        <ImageView fitHeight="79.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../imagenes/atras_icono.png" />
-                           </image>
-                        </ImageView>
-                        <AnchorPane maxHeight="-Infinity" prefHeight="319.0" prefWidth="234.0" style="-fx-border-color: #A5A5A5;" styleClass="fondo">
-                           <children>
-                              <VBox alignment="CENTER" layoutX="-2.0" layoutY="-3.0" prefHeight="312.0" prefWidth="234.0">
-                                 <children>
-                                    <ImageView fx:id="imagen" fitHeight="182.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
-                                       <VBox.margin>
-                                          <Insets top="10.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label fx:id="modelo" text="NOMBRE" />
-                                    <Label fx:id="precio" text="PRECIO" />
-                                    <Label fx:id="year" text="Año" />
-                                    <Label fx:id="ubicacion" text="Ubicación" />
-                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="160.0" style="-fx-pref-width: 140;" styleClass="boton_sinEstilo" text="Más información" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                        <ImageView fitHeight="79.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../imagenes/siguiente_icono.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </right>
       </BorderPane>
       <AnchorPane fx:id="configuracion" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="146.0" prefWidth="194.0" styleClass="fondo_configuracion" visible="false" StackPane.alignment="TOP_RIGHT">
          <children>
