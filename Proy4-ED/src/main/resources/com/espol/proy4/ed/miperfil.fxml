@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.PrincipalController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="642.0" stylesheets="@../../../../styles/estilos.css">
+         <top>
+            <HBox alignment="CENTER" prefHeight="83.0" prefWidth="600.0" spacing="30.0" style="-fx-border-width: 0 0 1px 0; -fx-border-color: #A5A5A5;" styleClass="fondo" BorderPane.alignment="TOP_LEFT">
+               <children>
+                  <Label fx:id="msgwelcome" prefHeight="35.0" prefWidth="216.0" styleClass="mensaje_bienvenido" text="Mi perfil" translateX="-50.0" />
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+      <AnchorPane fx:id="configuracion" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="146.0" prefWidth="194.0" styleClass="fondo_configuracion" visible="false" StackPane.alignment="TOP_RIGHT">
+         <children>
+            <VBox prefHeight="159.0" prefWidth="192.0">
+               <children>
+                  <HBox prefHeight="58.0" prefWidth="192.0" spacing="13.0">
+                     <children>
+                        <Label prefHeight="49.0" prefWidth="129.0" text="Label">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ImageView fitHeight="39.0" fitWidth="39.0" onMouseClicked="#cerrar_configuracion" pickOnBounds="true" preserveRatio="true" translateY="8.0">
+                           <image>
+                              <Image url="@../../../../imagenes/opcion.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" styleClass="botones_configuracion" text="Mi cuenta">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../imagenes/cuenta_icono.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="194.0" styleClass="botones_configuracion" text="Ver favoritos">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../imagenes/corazon_icono.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#cerrar_Sesion" prefHeight="31.0" prefWidth="157.0" styleClass="botones_configuracion" text="Cerrar sesion">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../imagenes/cerrar-sesion.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

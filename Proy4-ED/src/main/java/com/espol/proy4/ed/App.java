@@ -23,6 +23,7 @@ public class App extends Application {
     private static Scene scene;
     public static String fileusers = "src\\main\\resources\\datos\\usuarios.ser";
     public static ArrayList<User> usuarios = loadUsers(fileusers);
+    public static User userlogged = null;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -44,6 +45,9 @@ public class App extends Application {
         launch();
 
     }
+    
+    // Operaciones App
+    // Metodos estaticos a utilizar en el proyecto. Validaciones, etc.
     
     public static ArrayList<User> loadUsers(String file) {
 
@@ -69,6 +73,17 @@ public class App extends Application {
         } catch(IOException ex) {
             System.out.println("Error al encontrar el archivo");  
         }
+    }
+        
+    public static User contains(String user_to_enter) {
+        for (int i = 0; i < usuarios.size(); i++) {
+            User user = usuarios.get(i);
+            String username = user.getUsername();
+            if (username.equals(user_to_enter)) {
+                return user ;
+            }
+        }
+        return null;
     }
 
 }
