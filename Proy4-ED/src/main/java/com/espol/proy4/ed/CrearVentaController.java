@@ -1,0 +1,291 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
+package com.espol.proy4.ed;
+
+import Objects.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author USER
+ */
+public class CrearVentaController implements Initializable {
+    
+    @FXML
+    private ComboBox<tipoHistorial> tipoServicio;
+    @FXML
+    private AnchorPane pane;
+    @FXML
+    private VBox paneHistorial;
+    @FXML
+    private HBox imagenesPane;
+    @FXML
+    private Button btonSeleccionarImagen;
+    @FXML
+    private VBox paneAtributos;
+    @FXML
+    private AnchorPane listaAtributos;
+    @FXML
+    private TextField marca;
+    @FXML
+    private TextField motor;
+    @FXML
+    private TextField modelo;
+    @FXML
+    private TextField kilometraje;
+    @FXML
+    private TextField year;
+    @FXML
+    private TextField peso;
+    @FXML
+    private TextField ubicacion;
+    @FXML
+    private TextField transmision;
+    @FXML
+    private TextField precio;
+    
+    
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        //tipoServicio.getItems().setAll(tipoHistorial.values());
+        // TODO
+    }    
+    
+    @FXML
+    private void nuevoServicio() throws IOException{
+        HBox hb = new HBox();
+        ComboBox<tipoHistorial> tipo = new ComboBox();
+        ImageView cerrar = new ImageView(new Image("/imagenes/cerrar.png"));
+        cerrar.setFitWidth(16);
+        cerrar.setFitHeight(16);
+        cerrar.setOnMouseClicked((event)-> {
+            paneHistorial.getChildren().remove(hb);
+        });
+        tipo.getItems().setAll(tipoHistorial.values());
+        TextField textField = new TextField();
+        textField.setPrefWidth(128);
+        DatePicker fecha = new DatePicker();
+        fecha.setPromptText("Date");
+        fecha.getStyleClass().add("text-field");
+        fecha.setPrefWidth(69);
+        fecha.setPrefHeight(29);
+        hb.setSpacing(7);
+        hb.setAlignment(Pos.CENTER_LEFT);
+        tipo.getStyleClass().add("comboBox_filtros");
+        textField.getStyleClass().add("text-field");
+        hb.getChildren().addAll(tipo,fecha, textField, cerrar);
+        paneHistorial.getChildren().addAll(hb);
+    }
+    
+    @FXML
+    private void addAtributos() throws IOException{
+        HBox hb= new HBox();
+        hb.setSpacing(5);
+        hb.setAlignment(Pos.CENTER_LEFT);
+        TextField title= new TextField();
+        title.setId("title");
+        title.setPromptText("Título");
+        TextField descripcion= new TextField();
+        descripcion.setPromptText("Descripción");
+        descripcion.setId("descripcion");
+        ImageView cerrar = new ImageView(new Image("/imagenes/cerrar.png"));
+        cerrar.setFitWidth(16);
+        cerrar.setFitHeight(16);
+        title.setPrefWidth(62);
+        title.setPrefHeight(27);
+        descripcion.setPrefWidth(115);
+        descripcion.setPrefHeight(27);
+        title.getStyleClass().add("text-field");
+        descripcion.getStyleClass().add("text-field");
+        cerrar.setOnMouseClicked((event)-> {
+            paneAtributos.getChildren().remove(hb);
+        });
+        hb.getChildren().addAll(title, descripcion, cerrar);
+        paneAtributos.getChildren().addAll(hb);
+    }
+    @FXML
+    private void addImage() throws IOException{
+        HBox hb= new HBox();    
+        hb.setPadding(new javafx.geometry.Insets(0,5,0,5));
+        hb.setSpacing(5);
+        hb.setAlignment(Pos.CENTER_LEFT);
+        Label rutaImagen = new Label();
+        ImageView imageLogo = new ImageView(new Image("/imagenes/imagen.png"));
+        imageLogo.setFitWidth(14);
+        imageLogo.setFitHeight(12);
+        ImageView cerrar = new ImageView(new Image("/imagenes/cerrar.png"));
+        hb.getChildren().addAll(imageLogo, rutaImagen, cerrar);
+        hb.setMargin(cerrar, new javafx.geometry.Insets(-7, 3,0,3));
+        hb.getStyleClass().add("caja_imagen");
+        cerrar.setFitWidth(12);
+        cerrar.setFitHeight(12);
+        File imageSelected;
+        FileChooser file = new FileChooser();
+        file.setTitle("Seleccionar imagen");
+        file.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("*.png","*.jpg"));
+        Stage stage = (Stage) btonSeleccionarImagen.getScene().getWindow();
+        imageSelected = file.showOpenDialog(stage);
+        if(imageSelected!=null){
+            try{
+                Image image = new Image(new FileInputStream(imageSelected));
+                String ruta= imageSelected.getName(); // ruta para guardar la imagen;
+                Path projectDir = Paths.get("").toAbsolutePath();
+                Path rutaDestino =  projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", ruta));
+                Files.copy(imageSelected.toPath(), rutaDestino);
+                rutaImagen.setText(imageSelected.getName());
+                imagenesPane.getChildren().add(hb);
+                cerrar.setOnMouseClicked((event)-> {
+                    try {
+                        Files.delete(rutaDestino);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }  
+                    imagenesPane.getChildren().remove(hb);
+                });
+            }catch(FileNotFoundException e){
+                e.printStackTrace();
+            }    
+        }
+    }
+    @FXML
+    private void principal() throws IOException{
+        App.setRoot("principal");
+    }
+    
+    @FXML
+    private void crearVehiculo() throws IOException{
+        
+        // Aquí se declaran las listas para imagenes, e historial
+        
+        for(Node caja: pane.getChildren()){ // Recorre cada VBox para el historial de Servicios y Accidentes
+            VBox fila= (VBox) caja; 
+            ComboBox<tipoHistorial> tipo = new ComboBox(); // Almacena el tipo de Servicio 
+            TextField cajaDescripcion = new TextField(); // Almacena su descripcion
+            DatePicker cajaFecha = new DatePicker();
+            for(Node elements: fila.getChildren()){ // recorre todos los elementos que hay dentro de un VBox
+                if(elements instanceof ComboBox){  // 
+                    tipo = (ComboBox) elements;
+                }if (elements instanceof TextField){
+                    cajaDescripcion = (TextField) elements;
+                }if (elements instanceof DatePicker){
+                    cajaFecha = (DatePicker) elements;
+                }
+            }
+            tipoHistorial tipoSeleccionado = tipo.getSelectionModel().getSelectedItem();
+            String descripcion = cajaDescripcion.getText();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+            String fecha = cajaFecha.getValue().format(formatter);
+            if(fecha!=null && tipoSeleccionado!=null && descripcion!=null){
+                Historial h1 = new Historial(tipoSeleccionado, descripcion, fecha);
+                
+                // Aquí se debe agregar a la lista LinkedList de Historial
+                
+            } 
+        }
+        
+        for( Node caja: listaAtributos.getChildren()){
+            VBox fila = (VBox) caja;
+            TextField cajaTitle = new TextField();
+            TextField cajaDescripcion = new TextField();
+            for (Node elements: fila.getChildren()){
+                if(elements instanceof TextField && "title".equals(elements.getId())){
+                    cajaTitle = (TextField) elements;
+                } if(elements instanceof TextField && "descripcion".equals(elements.getId())){
+                    cajaDescripcion = (TextField) elements;
+                }
+            }
+            String title = cajaTitle.getText();
+            String descripcion = cajaDescripcion.getText();
+            if(title!=null && descripcion!=null){
+                AtributoAdicional a1 = new AtributoAdicional(title, descripcion);
+                
+                // Aquí se debe agregar a la lista LinkedList de atributos adicionales
+                
+            }
+        }
+        
+        for(Node caja:imagenesPane.getChildren()){ // Recorre cada HBox para obtener ruta de las imagenes
+            HBox fila = (HBox) caja;
+            String ruta = "/imagenesCarros/";
+            Label lb= new Label(); // Aquí se guarda el nombre de la imagen con su extension
+            for(Node elements: fila.getChildren()){
+                if(elements instanceof Label){
+                    lb = (Label) elements;
+                }
+            }
+            ruta+=lb.getText();
+            
+            //Aquí se debe guardar el nombre a la lista LinkedList de tipo String para todas las imagenes
+        
+        }
+    
+    
+    // Aquí se debe verificar que los campos estén llenos, que la lista de imagenes no esté vacía
+        if(marca!=null && modelo!=null && year!=null && kilometraje!=null && motor!=null && ubicacion!=null && peso!=null && transmision!=null && precio!=null){
+            String marca1 = marca.getText();
+            String modelo1 = modelo.getText();
+            int year1 = Integer.parseInt(year.getText());
+            int kilometraje1 = Integer.parseInt(kilometraje.getText());
+            String motor1 = motor.getText();
+            String ubicacion1 = ubicacion.getText();
+            int peso1 = Integer.parseInt(peso.getText());
+            String transmision1 = transmision.getText();
+            int precio1 = Integer.parseInt(precio.getText());
+
+
+            /*
+            if(){ // verifica que la lista de imagenes no esté vacía
+
+                // Se crea un nuevo vehículo
+                // Se agrega a la lista de vehículos en venta
+
+            }else{
+                Alert alert= new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Creación de cuenta");
+                alert.setTitle("Error de pedido");
+                alert.setContentText("Debe agregar por lo menos una imagen");
+                alert.showAndWait();
+            }   
+            */
+        }else{
+            Alert alert= new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Creación de Vehículo");
+            alert.setTitle("Error de pedido");
+            alert.setContentText("Debe completar todos los campos para crear la cuenta");
+            alert.showAndWait();    
+        }
+    }
+}

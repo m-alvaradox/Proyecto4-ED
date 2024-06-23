@@ -17,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -105,5 +104,10 @@ public class PrincipalController implements Initializable {
     @FXML
     private void crearVenta() throws IOException {
         App.setRoot("crearVenta");
+    }
+    
+    @FXML
+    private void misVehiculos() throws IOException {
+        App.setRoot("misVehiculos");
     }
 }
