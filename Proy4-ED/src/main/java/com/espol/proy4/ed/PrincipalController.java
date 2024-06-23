@@ -37,6 +37,9 @@ public class PrincipalController implements Initializable {
     @FXML
     private Label ubicacion;
     
+    @FXML
+    private Label msgwelcome;
+    
     private static String rutaImagen = "src/main/resources/imagenes/" ;
     /**
      * Initializes the controller class.
@@ -44,6 +47,8 @@ public class PrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        String msg = String.format("Hola, %s !", App.userlogged.getName());
+        msgwelcome.setText(msg);
     }    
     
     @FXML
@@ -67,6 +72,7 @@ public class PrincipalController implements Initializable {
         alert.getButtonTypes().setAll(botonSi, botonNo);
         Optional<ButtonType> resultado = alert.showAndWait();
         if(resultado.isPresent()&& resultado.get() == botonSi){
+            App.userlogged = null; // usuario logeado sera null al cerrar sesion
             alert.close();
             App.setRoot("iniciarSesion");
         } else{

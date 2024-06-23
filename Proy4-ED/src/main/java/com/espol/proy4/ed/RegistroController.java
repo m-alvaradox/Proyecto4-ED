@@ -60,7 +60,7 @@ public class RegistroController {
             String naci = fecha.getValue().format(formatter);
             String contra = password.getText();
             
-            if(contains(user) == true) {
+            if(App.contains(user) != null) {
                 
                 Alert alert= new Alert(AlertType.ERROR);
                 alert.setHeaderText("Creación de cuenta");
@@ -89,20 +89,5 @@ public class RegistroController {
             alert.showAndWait();
         }
     }
-    
-    public boolean contains(String new_user) {
-        for (int i = 0; i < App.usuarios.size(); i++) {
-            String username = App.usuarios.get(i).getUsername();
-            if (username.equals(new_user)) {
-                return true;
-            }
-        }
-        return false;
-    }
-        
-        
-        
-        
-        
-        
+                
     }
