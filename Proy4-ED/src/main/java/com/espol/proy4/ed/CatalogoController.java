@@ -42,4 +42,9 @@ public class CatalogoController implements Initializable {
         App.setRoot("principal");
     }
     
+    @FXML
+    private void masInformacion() throws IOException{
+        App.setRoot("InformacionVehiculo");
+    }
+    
 }

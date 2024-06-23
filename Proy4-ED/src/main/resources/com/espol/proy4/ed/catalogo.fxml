@@ -83,6 +83,7 @@
                               <Label text="Kilometraje" />
                               <Label text="Ubicación" />
                               <Label text="Precio" />
+                              <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#masInformacion" prefHeight="31.0" prefWidth="159.0" style="-fx-pref-width: 160;" styleClass="boton_sinEstilo" text="Más información" />
                            </children>
                         </VBox>
                         <ImageView fitHeight="54.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">

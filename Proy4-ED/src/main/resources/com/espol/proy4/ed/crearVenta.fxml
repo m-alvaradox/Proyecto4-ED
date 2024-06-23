@@ -246,7 +246,7 @@
       </VBox>
    </center>
    <bottom>
-      <Button mnemonicParsing="false" styleClass="boton_fondoAzul" text="Crear Vehículo" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#crearVehiculo" styleClass="boton_fondoAzul" text="Crear Vehículo" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="15.0" />
          </BorderPane.margin>

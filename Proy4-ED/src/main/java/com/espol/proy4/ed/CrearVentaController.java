@@ -5,6 +5,7 @@
 package com.espol.proy4.ed;
 
 import Objects.*;
+import TDAS.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -188,7 +189,11 @@ public class CrearVentaController implements Initializable {
     @FXML
     private void crearVehiculo() throws IOException{
         
-        // Aquí se declaran las listas para imagenes, e historial
+        // Aquí se declaran las listas para imagenes, historial, y atributosAdicionales
+        ArrayList<Historial> listaHistorial = new ArrayList<>();
+        ArrayList<AtributoAdicional> listaAtributosAdicionales = new ArrayList<>();
+        CircularDoublyList<String> listaImagenes = new CircularDoublyList<>();
+        
         
         for(Node caja: pane.getChildren()){ // Recorre cada VBox para el historial de Servicios y Accidentes
             VBox fila= (VBox) caja; 
@@ -206,13 +211,11 @@ public class CrearVentaController implements Initializable {
             }
             tipoHistorial tipoSeleccionado = tipo.getSelectionModel().getSelectedItem();
             String descripcion = cajaDescripcion.getText();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String fecha = cajaFecha.getValue().format(formatter);
             if(fecha!=null && tipoSeleccionado!=null && descripcion!=null){
                 Historial h1 = new Historial(tipoSeleccionado, descripcion, fecha);
-                
-                // Aquí se debe agregar a la lista LinkedList de Historial
-                
+                listaHistorial.addLast(h1);
             } 
         }
         
@@ -231,27 +234,21 @@ public class CrearVentaController implements Initializable {
             String descripcion = cajaDescripcion.getText();
             if(title!=null && descripcion!=null){
                 AtributoAdicional a1 = new AtributoAdicional(title, descripcion);
-                
-                // Aquí se debe agregar a la lista LinkedList de atributos adicionales
-                
+                listaAtributosAdicionales.addLast(a1);
             }
         }
         
         for(Node caja:imagenesPane.getChildren()){ // Recorre cada HBox para obtener ruta de las imagenes
             HBox fila = (HBox) caja;
-            String ruta = "/imagenesCarros/";
             Label lb= new Label(); // Aquí se guarda el nombre de la imagen con su extension
             for(Node elements: fila.getChildren()){
                 if(elements instanceof Label){
                     lb = (Label) elements;
                 }
             }
-            ruta+=lb.getText();
-            
-            //Aquí se debe guardar el nombre a la lista LinkedList de tipo String para todas las imagenes
-        
-        }
-    
+            String ruta =lb.getText();
+            listaImagenes.addLast(ruta); 
+        }  
     
     // Aquí se debe verificar que los campos estén llenos, que la lista de imagenes no esté vacía
         if(marca!=null && modelo!=null && year!=null && kilometraje!=null && motor!=null && ubicacion!=null && peso!=null && transmision!=null && precio!=null){
@@ -263,12 +260,10 @@ public class CrearVentaController implements Initializable {
             String ubicacion1 = ubicacion.getText();
             int peso1 = Integer.parseInt(peso.getText());
             String transmision1 = transmision.getText();
-            int precio1 = Integer.parseInt(precio.getText());
-
-
-            /*
-            if(){ // verifica que la lista de imagenes no esté vacía
-
+            double precio1 = Double.parseDouble(precio.getText());
+            
+            if(!listaImagenes.isEmpty()){ // verifica que la lista de imagenes no esté vacía
+                // Por predeterminado se pone el Vehiculo en venta
                 // Se crea un nuevo vehículo
                 // Se agrega a la lista de vehículos en venta
 
@@ -279,7 +274,6 @@ public class CrearVentaController implements Initializable {
                 alert.setContentText("Debe agregar por lo menos una imagen");
                 alert.showAndWait();
             }   
-            */
         }else{
             Alert alert= new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Creación de Vehículo");

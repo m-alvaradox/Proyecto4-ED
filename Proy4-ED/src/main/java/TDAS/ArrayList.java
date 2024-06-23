@@ -8,13 +8,6 @@ public class ArrayList<E> implements List<E>, Serializable{
     private int effectiveSize;
     
     public ArrayList(){
-        
-        //int[] a;
-        
-        //a = new int[100];
-        
-        //elements = new E[100]; NO FUNCIONA
-        
         elements = (E[])(new Object[capacity]); // SI FUNCIONA con Casting permitido con el arrayList
         effectiveSize = 0;
     }

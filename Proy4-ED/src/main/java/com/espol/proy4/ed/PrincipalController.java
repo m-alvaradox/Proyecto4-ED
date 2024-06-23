@@ -120,4 +120,9 @@ public class PrincipalController implements Initializable {
     private void misVehiculos() throws IOException {
         App.setRoot("misVehiculos");
     }
+    
+    @FXML
+    private void masInformacion() throws IOException {
+        App.setRoot("InformacionVehiculo");
+    }
 }

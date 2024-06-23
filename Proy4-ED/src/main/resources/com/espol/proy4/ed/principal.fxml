@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.PrincipalController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.PrincipalController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="642.0" stylesheets="@../../../../styles/estilos.css">
          <top>
@@ -72,7 +72,7 @@
                                     <Label fx:id="precio" text="PRECIO" />
                                     <Label fx:id="year" text="Año" />
                                     <Label fx:id="ubicacion" text="Ubicación" />
-                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="160.0" style="-fx-pref-width: 140;" styleClass="boton_sinEstilo" text="Más información" />
+                                    <Button mnemonicParsing="false" onAction="#masInformacion" prefHeight="31.0" prefWidth="160.0" style="-fx-pref-width: 140;" styleClass="boton_sinEstilo" text="Más información" />
                                  </children>
                               </VBox>
                            </children>
