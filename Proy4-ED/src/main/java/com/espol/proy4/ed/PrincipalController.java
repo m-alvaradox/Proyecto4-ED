@@ -70,6 +70,9 @@ public class PrincipalController implements Initializable {
         ButtonType botonSi = new ButtonType("Sí");
         ButtonType botonNo = new ButtonType("No");
         alert.getButtonTypes().setAll(botonSi, botonNo);
+        String css = this.getClass().getResource("/styles/estilos.css").toExternalForm();
+        alert.getDialogPane().getStylesheets().add(css);
+        alert.getDialogPane().getStyleClass().add("dialog-paneConfirmacion");
         Optional<ButtonType> resultado = alert.showAndWait();
         if(resultado.isPresent()&& resultado.get() == botonSi){
             App.userlogged = null; // usuario logeado sera null al cerrar sesion

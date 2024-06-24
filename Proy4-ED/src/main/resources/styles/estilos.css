@@ -126,3 +126,75 @@
     -fx-font-weight: bold;
     -fx-font-size:16px;
 }
+
+.dialog-paneError{
+    -fx-background-color: #88D5FC; 
+    -fx-alignment:center;
+}
+
+.dialog-paneError .header-panel{
+    -fx-background-color: #FFCBCA; 
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10px; 
+    -fx-border-color: #FF2723; 
+    -fx-border-width: 2px 0 2px 0;
+    -fx-font-size:15px;
+    -fx-font-family:"Courier New";
+    -fx-font-weight: bold; 
+}
+
+/* Estilo del contenido del cuadro de diálogo */
+.dialog-paneError .content {
+    -fx-background-color: white; 
+    -fx-text-fill: black; 
+    -fx-padding:10px 0 0 10px ;
+    -fx-font-family:"Century";
+}
+
+/* Estilo de los botones del cuadro de diálogo */
+.dialog-paneError .button-bar {
+    -fx-background-color: white;  
+}
+
+.dialog-paneError .button-bar .button {
+    -fx-background-color: #FF2723;
+    -fx-text-fill: white; 
+    -fx-font-weight: bold;
+}
+
+
+
+.dialog-paneConfirmacion{
+    -fx-background-color: #AAB5FF; 
+    -fx-alignment:center;
+}
+
+.dialog-paneConfirmacion .header-panel{
+    -fx-background-color: #AAB5FF; 
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10px; 
+    -fx-border-color: #3F56FF; 
+    -fx-border-width: 2px 0 2px 0;
+    -fx-font-size:15px;
+    -fx-font-family:"Courier New";
+    -fx-font-weight: bold; 
+}
+
+/* Estilo del contenido del cuadro de diálogo */
+.dialog-paneConfirmacion .content {
+    -fx-background-color: white; 
+    -fx-text-fill: black; 
+    -fx-padding:10px 0 0 10px ;
+    -fx-font-family:"Century";
+}
+
+/* Estilo de los botones del cuadro de diálogo */
+.dialog-paneConfirmacion .button-bar {
+    -fx-background-color: white;  
+}
+
+.dialog-paneConfirmacion .button-bar .button {
+    -fx-background-color: #485EFF;
+    -fx-text-fill: white; 
+    -fx-font-weight: bold;
+}

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.MiperfilController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../styles/estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espol.proy4.ed.MiperfilController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="642.0" stylesheets="@../../../../styles/estilos.css">
          <top>
@@ -31,16 +31,16 @@
                         <Image url="@../../../../imagenes/icono_perfil.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="58.0" layoutY="74.0" styleClass="texto_principal" text="Usuario" />
-                  <Label layoutX="56.0" layoutY="114.0" prefHeight="19.0" prefWidth="114.0" styleClass="texto_principal" text="Nombre" />
-                  <Label layoutX="56.0" layoutY="159.0" styleClass="texto_principal" text="Apellido" />
-                  <Label layoutX="56.0" layoutY="210.0" styleClass="texto_principal" text="Género" />
-                  <Label layoutX="56.0" layoutY="255.0" styleClass="texto_principal" text="Fecha Nacimiento" />
-                  <Label fx:id="l_user" layoutX="221.0" layoutY="75.0" prefHeight="19.0" prefWidth="124.0" styleClass="text-field" text="Label" />
-                  <Label fx:id="l_first_name" layoutX="221.0" layoutY="115.0" prefHeight="19.0" prefWidth="124.0" styleClass="text-field" text="Label" />
-                  <Label fx:id="l_last_name" layoutX="221.0" layoutY="160.0" prefHeight="19.0" prefWidth="124.0" styleClass="text-field" text="Label" />
-                  <Label fx:id="l_gender" layoutX="221.0" layoutY="211.0" prefHeight="19.0" prefWidth="124.0" styleClass="text-field" text="Label" />
-                  <Label fx:id="l_date_birth" layoutX="221.0" layoutY="256.0" prefHeight="19.0" prefWidth="124.0" styleClass="text-field" text="Label" />
+                  <Label layoutX="58.0" layoutY="74.0" styleClass="text-atributos" text="Usuario" />
+                  <Label layoutX="56.0" layoutY="114.0" prefHeight="19.0" prefWidth="114.0" styleClass="text-atributos" text="Nombre" />
+                  <Label layoutX="56.0" layoutY="159.0" styleClass="text-atributos" text="Apellido" />
+                  <Label layoutX="56.0" layoutY="210.0" styleClass="text-atributos" text="Género" />
+                  <Label layoutX="56.0" layoutY="255.0" styleClass="text-atributos" text="Fecha Nacimiento" />
+                  <Label fx:id="l_user" layoutX="221.0" layoutY="75.0" prefHeight="19.0" prefWidth="124.0" styleClass="texto_principal" text="Label" />
+                  <Label fx:id="l_first_name" layoutX="221.0" layoutY="115.0" prefHeight="19.0" prefWidth="124.0" styleClass="texto_principal" text="Label" />
+                  <Label fx:id="l_last_name" layoutX="221.0" layoutY="160.0" prefHeight="19.0" prefWidth="124.0" styleClass="texto_principal" text="Label" />
+                  <Label fx:id="l_gender" layoutX="221.0" layoutY="211.0" prefHeight="19.0" prefWidth="124.0" styleClass="texto_principal" text="Label" />
+                  <Label fx:id="l_date_birth" layoutX="221.0" layoutY="256.0" prefHeight="19.0" prefWidth="124.0" styleClass="texto_principal" text="Label" />
                   <Button layoutX="243.0" layoutY="320.0" mnemonicParsing="false" onAction="#regresar" prefHeight="44.0" prefWidth="157.0" styleClass="boton_fondoAzul" text="Regresar" />
                </children>
             </AnchorPane>
