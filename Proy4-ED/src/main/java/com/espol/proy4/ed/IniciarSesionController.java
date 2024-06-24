@@ -48,11 +48,11 @@ public class IniciarSesionController {
             alert.setTitle("Inicio de sesión");
             String msgerr = String.format("Usuario y/o contraseña incorrectos");
             alert.setContentText(msgerr);
+            String css = this.getClass().getResource("/styles/estilos.css").toExternalForm();
+            alert.getDialogPane().getStylesheets().add(css);
+            alert.getDialogPane().getStyleClass().add("dialog-paneError");
             alert.showAndWait();
-        }
-        
-        return false;
-         
-        
+        }    
+        return false;    
     }
 }
