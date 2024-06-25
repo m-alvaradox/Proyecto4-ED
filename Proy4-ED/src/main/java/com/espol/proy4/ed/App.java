@@ -1,18 +1,19 @@
 package com.espol.proy4.ed;
 
-import Objects.User;
-import TDAS.ArrayList;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import Objects.ListaVehiculos;
+import Objects.User;
+import TDAS.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 
 /**
@@ -25,6 +26,7 @@ public class App extends Application {
     public static String fileimages = "imagenes/";
     public static ArrayList<User> usuarios = loadUsers(fileusers);
     public static User userlogged = null;
+    public ListaVehiculos catalogo = new ListaVehiculos();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -41,6 +43,8 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
+    
 
     public static void main(String[] args) {
         launch();
@@ -86,5 +90,11 @@ public class App extends Application {
         }
         return null;
     }
+
+
+    public ListaVehiculos getCatalogo() {
+        return catalogo;
+    }
+
 
 }

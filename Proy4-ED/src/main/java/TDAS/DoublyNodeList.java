@@ -4,6 +4,8 @@
  */
 package TDAS;
 
+import Objects.Vehiculos;
+
 /**
  *
  * @author USER
@@ -19,6 +21,10 @@ public class DoublyNodeList<E> {
         this.previous=null;
     }
     
+    public DoublyNodeList() {
+        
+    }
+
     public E getContent() {
         return content;
     }
@@ -42,4 +48,5 @@ public class DoublyNodeList<E> {
     public void setPrevious(DoublyNodeList<E> previous) {
         this.previous = previous;
     }
+
 }

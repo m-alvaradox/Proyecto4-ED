@@ -3,9 +3,12 @@ package com.espol.proy4.ed;
 import Objects.Gender;
 import Objects.User;
 import TDAS.*;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import Objects.Vehiculos;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -59,6 +62,10 @@ public class RegistroController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
             String naci = fecha.getValue().format(formatter);
             String contra = password.getText();
+
+            DoublyLinkedList <Vehiculos> misvehiculos = new DoublyLinkedList<>();
+            DoublyLinkedList <Vehiculos> FavVehiculos = new DoublyLinkedList<>();
+            
             
             if(App.contains(user) != null) {
                 
@@ -69,7 +76,7 @@ public class RegistroController {
                 alert.setContentText(msgerr);
                 alert.showAndWait();
             } else {
-                App.createUser(new User(nom, ape, user, naci, genero, contra));
+                App.createUser(new User(nom, ape, user, naci, genero, contra, misvehiculos, FavVehiculos));
                 
                 Alert alert= new Alert(AlertType.INFORMATION);
                 alert.setHeaderText("Creación de cuenta");

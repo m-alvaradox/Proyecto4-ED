@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package com.espol.proy4.ed;
-import Objects.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Objects.Marca;
+import Objects.Modelo;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;

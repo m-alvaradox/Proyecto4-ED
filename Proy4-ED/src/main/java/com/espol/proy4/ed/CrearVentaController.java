@@ -4,8 +4,6 @@
  */
 package com.espol.proy4.ed;
 
-import Objects.*;
-import TDAS.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +14,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import Objects.AtributoAdicional;
+import Objects.Historial;
+import Objects.User;
+import Objects.Vehiculos;
+import Objects.tipoHistorial;
+import TDAS.ArrayList;
+import TDAS.CircularDoublyList;
+import TDAS.DoublyLinkedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -25,7 +32,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -78,9 +84,17 @@ public class CrearVentaController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * 
      */
+
+    User usuario = App.userlogged;
+    DoublyLinkedList<Vehiculos> L_Vehiculos = usuario.getMisVehiculos();
+    //ListaVehiculos catalogo = App.getCatalogo();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        
         //tipoServicio.getItems().setAll(tipoHistorial.values());
         // TODO
     }    
@@ -262,9 +276,19 @@ public class CrearVentaController implements Initializable {
             String transmision1 = transmision.getText();
             double precio1 = Double.parseDouble(precio.getText());
             
+            
             if(!listaImagenes.isEmpty()){ // verifica que la lista de imagenes no esté vacía
                 // Por predeterminado se pone el Vehiculo en venta
-                // Se crea un nuevo vehículo
+                Vehiculos v1 = new Vehiculos(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, null, listaImagenes, null);
+                L_Vehiculos.addLast(v1);
+
+                Alert alert= new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Creación de Venta exitoso");
+                alert.setTitle("Se guardaron los datos");
+                alert.showAndWait();
+
+                //inventario.agregarVehiculo(v1); 
+
                 // Se agrega a la lista de vehículos en venta
 
             }else{
@@ -282,4 +306,6 @@ public class CrearVentaController implements Initializable {
             alert.showAndWait();    
         }
     }
+
+
 }
