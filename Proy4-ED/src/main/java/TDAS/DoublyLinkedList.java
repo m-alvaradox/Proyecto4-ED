@@ -61,6 +61,10 @@ public class DoublyLinkedList<E> implements List<E>{
 
         if (e != null){
             DoublyNodeList<E> newNode = new DoublyNodeList<>(e);
+            if (last == null ){
+                header = newNode;
+            }
+        
             newNode.setPrevious(last);
             last.setNext(newNode);
             this.setLast(newNode);
