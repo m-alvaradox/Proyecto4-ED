@@ -39,9 +39,6 @@ public class Vehiculos {
 
     }
 
-    public Vehiculos(String marca1, String modelo1, int year1, double precio1, int kilometraje1, String motor1, String transmision1, int peso1, String ubicacion1, Object object, CircularDoublyList<String> listaImagenes, Object object0) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public String getMarca() {
         return marca;
