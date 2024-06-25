@@ -225,9 +225,9 @@ public class CrearVentaController implements Initializable {
             }
             tipoHistorial tipoSeleccionado = tipo.getSelectionModel().getSelectedItem();
             String descripcion = cajaDescripcion.getText();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            if(cajaFecha!=null && tipoSeleccionado!=null && descripcion!=null){
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String fecha = cajaFecha.getValue().format(formatter);
-            if(fecha!=null && tipoSeleccionado!=null && descripcion!=null){
                 Historial h1 = new Historial(tipoSeleccionado, descripcion, fecha);
                 listaHistorial.addLast(h1);
             } 
@@ -272,11 +272,11 @@ public class CrearVentaController implements Initializable {
             int kilometraje1 = Integer.parseInt(kilometraje.getText());
             String motor1 = motor.getText();
             String ubicacion1 = ubicacion.getText();
-            int peso1 = Integer.parseInt(peso.getText());
+            double peso1 = Double.parseDouble(peso.getText());
             String transmision1 = transmision.getText();
             double precio1 = Double.parseDouble(precio.getText());
             
-            
+          
             if(!listaImagenes.isEmpty()){ // verifica que la lista de imagenes no esté vacía
                 // Por predeterminado se pone el Vehiculo en venta
                 Vehiculos v1 = new Vehiculos(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, null, listaImagenes, null);
