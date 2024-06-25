@@ -15,14 +15,14 @@ public class Vehiculos {
     private String ubicacion;
     private EstadoD estado;
     private CircularDoublyList<String> fotos = new CircularDoublyList<>();
-    private ArrayList<tipoHistorial> historial = new ArrayList<>();
+    private ArrayList<Historial> historial = new ArrayList<>();
     private ArrayList<AtributoAdicional> AtributoAdicional = new ArrayList<>();
 
 
 
     public Vehiculos(String marca, String modelo, int anio, double precio, int kilometraje, String motor,
             String transmision, double peso, String ubicacion,EstadoD estado,CircularDoublyList<String> fotos,
-            ArrayList<tipoHistorial> historial, ArrayList<AtributoAdicional> AtributoAdicional) {
+            ArrayList<Historial> historial, ArrayList<AtributoAdicional> AtributoAdicional) {
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
@@ -120,7 +120,7 @@ public class Vehiculos {
         this.fotos = fotos;
     }
 
-    public ArrayList<tipoHistorial> gethistorial() {
+    public ArrayList<Historial> gethistorial() {
         return historial;
     }
 

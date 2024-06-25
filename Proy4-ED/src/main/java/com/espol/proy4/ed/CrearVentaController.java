@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import Objects.AtributoAdicional;
+import Objects.EstadoD;
 import Objects.Historial;
 import Objects.User;
 import Objects.Vehiculos;
@@ -200,6 +201,7 @@ public class CrearVentaController implements Initializable {
         App.setRoot("principal");
     }
     
+
     @FXML
     private void crearVehiculo() throws IOException{
         
@@ -226,7 +228,7 @@ public class CrearVentaController implements Initializable {
             tipoHistorial tipoSeleccionado = tipo.getSelectionModel().getSelectedItem();
             String descripcion = cajaDescripcion.getText();
             if(cajaFecha!=null && tipoSeleccionado!=null && descripcion!=null){
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String fecha = cajaFecha.getValue().format(formatter);
                 Historial h1 = new Historial(tipoSeleccionado, descripcion, fecha);
                 listaHistorial.addLast(h1);
@@ -276,10 +278,14 @@ public class CrearVentaController implements Initializable {
             String transmision1 = transmision.getText();
             double precio1 = Double.parseDouble(precio.getText());
             
-          
+            
+//
+
+
+
             if(!listaImagenes.isEmpty()){ // verifica que la lista de imagenes no esté vacía
                 // Por predeterminado se pone el Vehiculo en venta
-                Vehiculos v1 = new Vehiculos(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, null, listaImagenes, null);
+                Vehiculos v1 =  new Vehiculos(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, EstadoD.Disponible, listaImagenes, listaHistorial, listaAtributosAdicionales);
                 L_Vehiculos.addLast(v1);
 
                 Alert alert= new Alert(Alert.AlertType.ERROR);
