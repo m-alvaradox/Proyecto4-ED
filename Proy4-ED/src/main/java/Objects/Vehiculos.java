@@ -124,7 +124,15 @@ public class Vehiculos {
         return historial;
     }
 
+    public ArrayList<AtributoAdicional> getAtributoAdicional() {
+        return AtributoAdicional;
+    }
 
+    public void setAtributoAdicional(ArrayList<AtributoAdicional> AtributoAdicional) {
+        this.AtributoAdicional = AtributoAdicional;
+    }
+
+    
 
     @Override
     public String toString() {

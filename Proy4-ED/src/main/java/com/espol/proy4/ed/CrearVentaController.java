@@ -278,16 +278,11 @@ public class CrearVentaController implements Initializable {
             String transmision1 = transmision.getText();
             double precio1 = Double.parseDouble(precio.getText());
             
-            
-//
-
-
-
             if(!listaImagenes.isEmpty()){ // verifica que la lista de imagenes no esté vacía
                 // Por predeterminado se pone el Vehiculo en venta
                 Vehiculos v1 =  new Vehiculos(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, EstadoD.Disponible, listaImagenes, listaHistorial, listaAtributosAdicionales);
                 L_Vehiculos.addLast(v1);
-
+                usuario.setMisVehiculos(L_Vehiculos);
                 Alert alert= new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Creación de Venta exitoso");
                 alert.setTitle("Se guardaron los datos");
