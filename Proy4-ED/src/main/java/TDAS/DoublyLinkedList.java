@@ -1,7 +1,9 @@
 package TDAS;
 
+import java.io.Serializable;
 
-public class DoublyLinkedList<E> implements List<E>{
+
+public class DoublyLinkedList<E> implements List<E>, Serializable{
     
     private DoublyNodeList<E> header;
     private DoublyNodeList<E> last;
