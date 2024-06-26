@@ -2,8 +2,9 @@ package Objects;
 
 import TDAS.ArrayList;
 import TDAS.CircularDoublyList;
+import java.io.Serializable;
 
-public class Vehiculos {
+public class Vehiculos implements Serializable {
     private String marca;
     private String modelo;
     private int anio;

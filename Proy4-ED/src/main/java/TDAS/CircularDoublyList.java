@@ -4,11 +4,13 @@
  */
 package TDAS;
 
+import java.io.Serializable;
+
 /**
  *
  * @author USER
  */
-public class CircularDoublyList<E> implements List<E> {
+public class CircularDoublyList<E> implements List<E>, Serializable {
      private DoublyNodeList<E> last;
 
     public CircularDoublyList() {
