@@ -189,6 +189,8 @@ public class MisVehiculosController implements Initializable {
    private void siguienteVehiculo() throws IOException{
        
         if(vehiculoUsar.getNext()!=null){
+            paneAtributos.getChildren().clear();
+            paneHistorial.getChildren().clear();
             vehiculoUsar = vehiculoUsar.getNext();
             Vehiculos vehiculo = vehiculoUsar.getContent();
             marca.setText(vehiculo.getMarca());
@@ -269,6 +271,8 @@ public class MisVehiculosController implements Initializable {
    private void atrasVehiculo() throws IOException {
        
        if(vehiculoUsar.getPrevious()!=null){
+            paneAtributos.getChildren().clear();
+            paneHistorial.getChildren().clear();
             vehiculoUsar = vehiculoUsar.getPrevious();
             Vehiculos vehiculo = vehiculoUsar.getContent();
             marca.setText(vehiculo.getMarca());
