@@ -52,8 +52,6 @@ public class CrearVentaController implements Initializable {
     @FXML
     private ComboBox<tipoHistorial> tipoServicio;
     @FXML
-    private AnchorPane pane;
-    @FXML
     private VBox paneHistorial;
     @FXML
     private HBox imagenesPane;
@@ -61,8 +59,6 @@ public class CrearVentaController implements Initializable {
     private Button btonSeleccionarImagen;
     @FXML
     private VBox paneAtributos;
-    @FXML
-    private AnchorPane listaAtributos;
     @FXML
     private TextField marca;
     @FXML
@@ -211,8 +207,8 @@ public class CrearVentaController implements Initializable {
         CircularDoublyList<String> listaImagenes = new CircularDoublyList<>();
         
         
-        for(Node caja: pane.getChildren()){ // Recorre cada VBox para el historial de Servicios y Accidentes
-            VBox fila= (VBox) caja; 
+        for(Node caja: paneHistorial.getChildren()){ // Recorre cada VBox para el historial de Servicios y Accidentes
+            HBox fila= (HBox) caja; 
             ComboBox<tipoHistorial> tipo = new ComboBox(); // Almacena el tipo de Servicio 
             TextField cajaDescripcion = new TextField(); // Almacena su descripcion
             DatePicker cajaFecha = new DatePicker();
@@ -235,8 +231,8 @@ public class CrearVentaController implements Initializable {
             } 
         }
         
-        for( Node caja: listaAtributos.getChildren()){
-            VBox fila = (VBox) caja;
+        for( Node caja: paneAtributos.getChildren()){
+            HBox fila = (HBox) caja;
             TextField cajaTitle = new TextField();
             TextField cajaDescripcion = new TextField();
             for (Node elements: fila.getChildren()){
@@ -278,16 +274,15 @@ public class CrearVentaController implements Initializable {
             String transmision1 = transmision.getText();
             double precio1 = Double.parseDouble(precio.getText());
             
-            
-//
-
-
-
             if(!listaImagenes.isEmpty()){ // verifica que la lista de imagenes no esté vacía
                 // Por predeterminado se pone el Vehiculo en venta
                 Vehiculos v1 =  new Vehiculos(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, EstadoD.Disponible, listaImagenes, listaHistorial, listaAtributosAdicionales);
+                if(L_Vehiculos==null){
+                    L_Vehiculos = new DoublyLinkedList<>();
+                }
                 L_Vehiculos.addLast(v1);
-
+                usuario.setMisVehiculos(L_Vehiculos);
+               // App.ActualizarListaUsuarios();
                 Alert alert= new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Creación de Venta exitoso");
                 alert.setTitle("Se guardaron los datos");

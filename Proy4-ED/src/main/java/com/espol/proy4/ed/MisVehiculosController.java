@@ -7,6 +7,7 @@ package com.espol.proy4.ed;
 import Objects.*;
 import TDAS.*;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -91,32 +92,45 @@ public class MisVehiculosController implements Initializable {
     @FXML
     private ComboBox estadoVehiculo;
     
-    
-    // private LinkedList<Vehiculo> listaVehiculo; // Aquí se inicia el DoublyCircularLinkedList
+    User usuario = App.userlogged;
+    private DoublyLinkedList<Vehiculos> listaVehiculo = usuario.getMisVehiculos(); // Aquí se inicia el DoublyCircularLinkedList
     private CircularDoublyList<String> imagenes; // Imagenes que usa el vehiculo
     private DoublyNodeList<String> rutaImagen; // Nodo imagen 
-    // private NodeList vehiculoUsar; // Aquí se almacena el vehiculo que usa en pantalla
+    private DoublyNodeList<Vehiculos> vehiculoUsar; // Aquí se almacena el vehiculo que usa en pantalla
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         estadoVehiculo.getItems().addAll("Diponible", "Vendido", "No disponible" );
-        /*
+        
         vehiculoUsar = listaVehiculo.getHeader(); 
-        Vehiculo vehiculo = vehiculoUsar.getContent();
+        Vehiculos vehiculo = vehiculoUsar.getContent();
         marca.setText(vehiculo.getMarca());
         modelo.setText(vehiculo.getModelo());
+        motor.setText(vehiculo.getMotor());
+        ubicacion.setText(vehiculo.getUbicacion());
+        kilometraje.setText(vehiculo.getKilometraje()+"");
+        precio.setText(vehiculo.getPrecio()+"");
+        year.setText(vehiculo.getAnio()+"");
+        peso.setText(vehiculo.getPeso()+"");
+        transmision.setText(vehiculo.getTransmision());
         
         // Aquí se debe mostrar todos los datos
         
-        ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributos();
-        ArrayList<Historial> listaHistorial = vehiculo.getHistorial();
+        ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributoAdicional();
+        ArrayList<Historial> listaHistorial = vehiculo.gethistorial();
         
-        imagenes= vehiculo.getListaImagenes();// Doubly linked list para mostrar imagenes
+        imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
         rutaImagen = imagenes.getHeader();
-        imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
+        InputStream inputStream = getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent());
+
+        if (inputStream != null) {
+            imagen.setImage(new Image(inputStream));
+        } else {
+            System.out.println("No se encontró el archivo de imagen: " + rutaImagen.getContent());
+            // Manejo adicional si el recurso no se encuentra
+        }
         for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
             AtributoAdicional a= listaAtributos.get(i);
             HBox hb = new HBox();
@@ -155,7 +169,7 @@ public class MisVehiculosController implements Initializable {
             hb.getChildren().addAll(image,tipo, fecha, descripcion);
             paneHistorial.getChildren().add(hb);
         }
-        */
+        
     }  
     
     @FXML
@@ -165,19 +179,19 @@ public class MisVehiculosController implements Initializable {
    
    @FXML
    private void siguienteVehiculo() throws IOException{
-       /*
+       
         if(vehiculoUsar.getNext()!=null){
             vehiculoUsar = vehiculoUsar.getNext();
-            Vehiculo vehiculo = vehiculoUsar.getContent();
+            Vehiculos vehiculo = vehiculoUsar.getContent();
             marca.setText(vehiculo.getMarca());
             modelo.setText(vehiculo.getModelo());
 
             // Aquí se debe mostrar todos los datos
 
-            ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributos();
-            ArrayList<Historial> listaHistorial = vehiculo.getHistorial();
+            ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributoAdicional();
+            ArrayList<Historial> listaHistorial = vehiculo.gethistorial();
 
-            imagenes= vehiculo.getListaImagenes();// Doubly linked list para mostrar imagenes
+            imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
             rutaImagen = imagenes.getHeader();
             imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
             for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
@@ -222,24 +236,24 @@ public class MisVehiculosController implements Initializable {
                 
             //Mostrar alerta que ya no existen Vehiculos;
        }
-        */
+        
     }
    
    @FXML
    private void atrasVehiculo() throws IOException {
-       /*
-       if(vehiculoUsar.getProvius()!==null){
+       
+       if(vehiculoUsar.getPrevious()!=null){
             vehiculoUsar = vehiculoUsar.getNext();
-            Vehiculo vehiculo = vehiculoUsar.getContent();
+            Vehiculos vehiculo = vehiculoUsar.getContent();
             marca.setText(vehiculo.getMarca());
             modelo.setText(vehiculo.getModelo());
 
             // Aquí se debe mostrar todos los datos
 
-            ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributos();
-            ArrayList<Historial> listaHistorial = vehiculo.getHistorial();
+            ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributoAdicional();
+            ArrayList<Historial> listaHistorial = vehiculo.gethistorial();
 
-            imagenes= vehiculo.getListaImagenes();// Doubly linked list para mostrar imagenes
+            imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
             rutaImagen = imagenes.getHeader();
             imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
             for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
@@ -285,7 +299,7 @@ public class MisVehiculosController implements Initializable {
            // Mostrar alerta que ya no existen más vehiculos a mostrar;
            
        }
-       */
+       
    }
    
    @FXML
@@ -305,15 +319,15 @@ public class MisVehiculosController implements Initializable {
         vehiculoMostrado.setVisible(false);
         vehiculoEditar.setVisible(true);
         
-        /*
-        Vehiculo vehiculo = vehiculoUsar.getContent();
+        
+        Vehiculos vehiculo = vehiculoUsar.getContent();
         marca1.setText(vehiculo.getMarca());
         modelo1.setText(vehiculo.getModelo());
         
         // Aquí se debe mostrar todos los datos
         
-        ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributos();
-        ArrayList<Historial> listaHistorial = vehiculo.getHistorial();
+        ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributoAdicional();
+        ArrayList<Historial> listaHistorial = vehiculo.gethistorial();
         String rutaCompleta = "imagenesCarros/"+ rutaImagen.getContent();
         imagen.setImage(new Image(rutaCompleta));
         for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
@@ -363,7 +377,6 @@ public class MisVehiculosController implements Initializable {
             hb.getChildren().addAll(tipo, fecha, descripcion, image);
             paneHistorial.getChildren().add(hb);
         }
-        */
        
 
         // Se debe mostrar los datos del vehiculo en textd field para que los pueda actualizar;
