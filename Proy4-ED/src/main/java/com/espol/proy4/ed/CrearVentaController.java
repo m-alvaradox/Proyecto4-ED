@@ -24,6 +24,7 @@ import Objects.tipoHistorial;
 import TDAS.ArrayList;
 import TDAS.CircularDoublyList;
 import TDAS.DoublyLinkedList;
+import java.nio.file.StandardCopyOption;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -176,7 +177,7 @@ public class CrearVentaController implements Initializable {
                 String ruta= imageSelected.getName(); // ruta para guardar la imagen;
                 Path projectDir = Paths.get("").toAbsolutePath();
                 Path rutaDestino =  projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", ruta));
-                Files.copy(imageSelected.toPath(), rutaDestino);
+                Files.copy(imageSelected.toPath(), rutaDestino, StandardCopyOption.REPLACE_EXISTING);
                 rutaImagen.setText(imageSelected.getName());
                 imagenesPane.getChildren().add(hb);
                 cerrar.setOnMouseClicked((event)-> {
@@ -281,8 +282,8 @@ public class CrearVentaController implements Initializable {
                     L_Vehiculos = new DoublyLinkedList<>();
                 }
                 L_Vehiculos.addLast(v1);
-                usuario.setMisVehiculos(L_Vehiculos);
-               // App.ActualizarListaUsuarios();
+                App.userlogged.setMisVehiculos(L_Vehiculos);
+                App.ActualizarListaUsuarios();
                 Alert alert= new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Creación de Venta exitoso");
                 alert.setTitle("Se guardaron los datos");

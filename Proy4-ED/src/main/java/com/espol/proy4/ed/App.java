@@ -90,9 +90,21 @@ public class App extends Application {
             out1.writeObject(usuarios);
             out1.flush();
         } catch(IOException ex) {
-            System.out.println("Error al encontrar el archivo");  
+            System.out.println("Error al encontrar el archivo: " + ex.getMessage());
+            ex.printStackTrace();  // Esto imprime la traza completa de la excepción
+        }
+       // usuarios = loadUsers();
+       // actualizarUsuarioEnLista();
+    }
+    
+   public static void actualizarUsuarioEnLista() {
+    for (int i = 0; i < usuarios.size(); i++) {
+        User usuario = usuarios.get(i);
+        if (usuario.getUsername().equals(userlogged.getUsername())) {
+            userlogged = usuario;
         }
     }
+   }
     
     public ListaVehiculos getCatalogo() {
         return catalogo;

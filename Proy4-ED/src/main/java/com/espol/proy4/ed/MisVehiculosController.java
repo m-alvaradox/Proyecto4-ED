@@ -6,6 +6,7 @@ package com.espol.proy4.ed;
 
 import Objects.*;
 import TDAS.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -93,7 +94,7 @@ public class MisVehiculosController implements Initializable {
     private ComboBox estadoVehiculo;
     
     User usuario = App.userlogged;
-    private DoublyLinkedList<Vehiculos> listaVehiculo = usuario.getMisVehiculos(); // Aquí se inicia el DoublyCircularLinkedList
+    private DoublyLinkedList<Vehiculos> listaVehiculo;// Aquí se inicia el DoublyCircularLinkedList
     private CircularDoublyList<String> imagenes; // Imagenes que usa el vehiculo
     private DoublyNodeList<String> rutaImagen; // Nodo imagen 
     private DoublyNodeList<Vehiculos> vehiculoUsar; // Aquí se almacena el vehiculo que usa en pantalla
@@ -103,7 +104,8 @@ public class MisVehiculosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         estadoVehiculo.getItems().addAll("Diponible", "Vendido", "No disponible" );
-        
+        listaVehiculo = usuario.getMisVehiculos(); 
+
         vehiculoUsar = listaVehiculo.getHeader(); 
         Vehiculos vehiculo = vehiculoUsar.getContent();
         marca.setText(vehiculo.getMarca());
@@ -123,14 +125,9 @@ public class MisVehiculosController implements Initializable {
         
         imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
         rutaImagen = imagenes.getHeader();
-        InputStream inputStream = getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent());
+        //InputStream inputStream = getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent());
 
-        if (inputStream != null) {
-            imagen.setImage(new Image(inputStream));
-        } else {
-            System.out.println("No se encontró el archivo de imagen: " + rutaImagen.getContent());
-            // Manejo adicional si el recurso no se encuentra
-        }
+        imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
         for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
             AtributoAdicional a= listaAtributos.get(i);
             HBox hb = new HBox();
@@ -185,6 +182,13 @@ public class MisVehiculosController implements Initializable {
             Vehiculos vehiculo = vehiculoUsar.getContent();
             marca.setText(vehiculo.getMarca());
             modelo.setText(vehiculo.getModelo());
+            motor.setText(vehiculo.getMotor());
+            ubicacion.setText(vehiculo.getUbicacion());
+            kilometraje.setText(vehiculo.getKilometraje()+"");
+            precio.setText(vehiculo.getPrecio()+"");
+            year.setText(vehiculo.getAnio()+"");
+            peso.setText(vehiculo.getPeso()+"");
+            transmision.setText(vehiculo.getTransmision());
 
             // Aquí se debe mostrar todos los datos
 
@@ -193,7 +197,18 @@ public class MisVehiculosController implements Initializable {
 
             imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
             rutaImagen = imagenes.getHeader();
-            imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
+            Path projectDir = Paths.get("").toAbsolutePath();
+            Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+            //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
+            File archivoImagen = rutaAbsoluta.toFile();
+            if (!archivoImagen.exists()) {
+                System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+                return;
+            }
+
+            // Carga la nueva imagen
+            Image image1 = new Image(archivoImagen.toURI().toString());
+            imagen.setImage(image1);
             for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
                 AtributoAdicional a= listaAtributos.get(i);
                 HBox hb = new HBox();
@@ -243,10 +258,17 @@ public class MisVehiculosController implements Initializable {
    private void atrasVehiculo() throws IOException {
        
        if(vehiculoUsar.getPrevious()!=null){
-            vehiculoUsar = vehiculoUsar.getNext();
+            vehiculoUsar = vehiculoUsar.getPrevious();
             Vehiculos vehiculo = vehiculoUsar.getContent();
             marca.setText(vehiculo.getMarca());
             modelo.setText(vehiculo.getModelo());
+            motor.setText(vehiculo.getMotor());
+            ubicacion.setText(vehiculo.getUbicacion());
+            kilometraje.setText(vehiculo.getKilometraje()+"");
+            precio.setText(vehiculo.getPrecio()+"");
+            year.setText(vehiculo.getAnio()+"");
+            peso.setText(vehiculo.getPeso()+"");
+            transmision.setText(vehiculo.getTransmision());
 
             // Aquí se debe mostrar todos los datos
 
@@ -255,7 +277,7 @@ public class MisVehiculosController implements Initializable {
 
             imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
             rutaImagen = imagenes.getHeader();
-            imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
+            imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
             for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
                 AtributoAdicional a= listaAtributos.get(i);
                 HBox hb = new HBox();
@@ -328,7 +350,7 @@ public class MisVehiculosController implements Initializable {
         
         ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributoAdicional();
         ArrayList<Historial> listaHistorial = vehiculo.gethistorial();
-        String rutaCompleta = "imagenesCarros/"+ rutaImagen.getContent();
+        String rutaCompleta = "/imagenesCarros/"+ rutaImagen.getContent();
         imagen.setImage(new Image(rutaCompleta));
         for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
             AtributoAdicional a= listaAtributos.get(i);
