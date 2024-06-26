@@ -84,7 +84,7 @@ public class App extends Application {
         
         DoublyLinkedList<Vehiculo> cars_list = new DoublyLinkedList<>();
 
-        try(ObjectInputStream oit = new ObjectInputStream(new FileInputStream(App.fileusers))) {
+        try(ObjectInputStream oit = new ObjectInputStream(new FileInputStream(App.filecars))) {
             cars_list = (DoublyLinkedList<Vehiculo>) oit.readObject();
         } catch(Exception e) {
             System.out.println("No hay ningun vehiculo por el momento");
@@ -111,20 +111,22 @@ public class App extends Application {
     }
 
     public static void ActualizarListaUsuarios(){
+        
         try(ObjectOutputStream out1 = new ObjectOutputStream(new FileOutputStream(fileusers))) {
             out1.writeObject(usuarios);
             out1.flush();
         } catch(IOException ex) {
-            System.out.println("Error al encontrar el archivo");  
+            System.out.println("Error al encontrar el archivo usuarios.ser");  
         }
     }
     
-    static void ActualizarListaVehiculos() {
+    public static void ActualizarListaVehiculos() {
+        
         try(ObjectOutputStream out1 = new ObjectOutputStream(new FileOutputStream(filecars))) {
             out1.writeObject(vehiculos);
             out1.flush();
         } catch(IOException ex) {
-            System.out.println("Error al encontrar el archivo");  
+            System.out.println(ex);  
         }
     }
     

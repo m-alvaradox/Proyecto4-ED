@@ -85,7 +85,7 @@ public class CrearVentaController implements Initializable {
      * 
      */
 
-    User usuario = App.userlogged;
+    //User usuario = App.userlogged;
     //DoublyLinkedList<Vehiculos> L_Vehiculos = usuario.getMisVehiculos();
     //ListaVehiculos catalogo = App.getCatalogo();
 
@@ -284,11 +284,13 @@ public class CrearVentaController implements Initializable {
             
             if(!listaImagenes.isEmpty()){ // verifica que la lista de imagenes no esté vacía
                 // Por predeterminado se pone el Vehiculo en venta
-                Vehiculo v1 =  new Vehiculo(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, EstadoD.Disponible, listaImagenes, listaHistorial, listaAtributosAdicionales, usuario);
-                App.vehiculos.addFirst(v1);
+                Vehiculo v1 =  new Vehiculo(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, EstadoD.Disponible, listaImagenes, listaHistorial, listaAtributosAdicionales, App.userlogged);
+                
+                App.vehiculos.addLast(v1);
+                
                 App.ActualizarListaVehiculos();
                 
-                Alert alert= new Alert(Alert.AlertType.ERROR);
+                Alert alert= new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Creación de Venta exitoso");
                 alert.setTitle("Se guardaron los datos");
                 alert.showAndWait();

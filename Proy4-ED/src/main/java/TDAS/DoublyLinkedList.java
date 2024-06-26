@@ -171,5 +171,12 @@ public class DoublyLinkedList<E> implements List<E>, Serializable{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public String toString() {
+        return "DoublyLinkedList{" + "header=" + header + ", last=" + last + '}';
+    }
+    
+    
+
 
 }
