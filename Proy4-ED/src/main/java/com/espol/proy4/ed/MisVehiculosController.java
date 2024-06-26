@@ -7,6 +7,7 @@ package com.espol.proy4.ed;
 import Objects.*;
 import TDAS.*;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -101,13 +102,19 @@ public class MisVehiculosController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         estadoVehiculo.getItems().addAll("Diponible", "Vendido", "No disponible" );
         
         vehiculoUsar = listaVehiculo.getHeader(); 
         Vehiculos vehiculo = vehiculoUsar.getContent();
         marca.setText(vehiculo.getMarca());
         modelo.setText(vehiculo.getModelo());
+        motor.setText(vehiculo.getMotor());
+        ubicacion.setText(vehiculo.getUbicacion());
+        kilometraje.setText(vehiculo.getKilometraje()+"");
+        precio.setText(vehiculo.getPrecio()+"");
+        year.setText(vehiculo.getAnio()+"");
+        peso.setText(vehiculo.getPeso()+"");
+        transmision.setText(vehiculo.getTransmision());
         
         // Aquí se debe mostrar todos los datos
         
@@ -116,7 +123,14 @@ public class MisVehiculosController implements Initializable {
         
         imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
         rutaImagen = imagenes.getHeader();
-        imagen.setImage(new Image("src/main/resources/imagenesCarros/"+ rutaImagen.getContent()));
+        InputStream inputStream = getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent());
+
+        if (inputStream != null) {
+            imagen.setImage(new Image(inputStream));
+        } else {
+            System.out.println("No se encontró el archivo de imagen: " + rutaImagen.getContent());
+            // Manejo adicional si el recurso no se encuentra
+        }
         for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
             AtributoAdicional a= listaAtributos.get(i);
             HBox hb = new HBox();

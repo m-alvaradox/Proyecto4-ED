@@ -24,7 +24,7 @@ public class App extends Application {
     private static Scene scene;
     public static String fileusers = "src\\main\\resources\\datos\\usuarios.ser";
     public static String fileimages = "imagenes/";
-    public static ArrayList<User> usuarios = loadUsers(fileusers);
+    public static ArrayList<User> usuarios = loadUsers();
     public static User userlogged = null;
     public ListaVehiculos catalogo = new ListaVehiculos();
 
@@ -54,7 +54,7 @@ public class App extends Application {
     // Operaciones App
     // Metodos estaticos a utilizar en el proyecto. Validaciones, etc.
     
-    public static ArrayList<User> loadUsers(String file) {
+    public static ArrayList<User> loadUsers() {
 
         ArrayList<User> users_list = new ArrayList<>();
 
@@ -71,13 +71,7 @@ public class App extends Application {
     public static void createUser(User user) {
         
         usuarios.addLast(user);
-
-        try(ObjectOutputStream out1 = new ObjectOutputStream(new FileOutputStream(fileusers))) {
-            out1.writeObject(usuarios);
-            out1.flush();
-        } catch(IOException ex) {
-            System.out.println("Error al encontrar el archivo");  
-        }
+        ActualizarListaUsuarios();
     }
         
     public static User contains(String user_to_enter) {
@@ -91,7 +85,15 @@ public class App extends Application {
         return null;
     }
 
-
+    public static void ActualizarListaUsuarios(){
+        try(ObjectOutputStream out1 = new ObjectOutputStream(new FileOutputStream(fileusers))) {
+            out1.writeObject(usuarios);
+            out1.flush();
+        } catch(IOException ex) {
+            System.out.println("Error al encontrar el archivo");  
+        }
+    }
+    
     public ListaVehiculos getCatalogo() {
         return catalogo;
     }
