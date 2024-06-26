@@ -3,6 +3,7 @@ Objects\Historial.class
 TDAS\NodeList.class
 TDAS\CircularDoublyList.class
 com\espol\proy4\ed\IniciarSesionController.class
+Objects\Vehiculo.class
 com\espol\proy4\ed\RegistroController.class
 TDAS\ArrayList.class
 Objects\Modelo.class
@@ -21,7 +22,6 @@ TDAS\DoublyNodeList.class
 Objects\User.class
 com\espol\proy4\ed\InformacionVehiculoController.class
 Objects\ListaVehiculos.class
-Objects\Vehiculos.class
 com\espol\proy4\ed\CatalogoController.class
 com\espol\proy4\ed\FavoritosController.class
 Objects\Gender.class

@@ -12,19 +12,15 @@ public class User implements Serializable {
     private String date_birth;
     private Gender gender;
     private String password;
-    private DoublyLinkedList<Vehiculos> misVehiculos = new DoublyLinkedList<>();
-    private DoublyLinkedList<Vehiculos> FavVehiculos = new DoublyLinkedList<>();
     
 
-    public User(String name, String lastname, String username, String date_birth, Gender gender, String password, DoublyLinkedList<Vehiculos> misVehiculos, DoublyLinkedList<Vehiculos> FavVehiculos) {
+    public User(String name, String lastname, String username, String date_birth, Gender gender, String password) {
         this.name = name;
         this.lastname = lastname;
         this.username = username;
         this.date_birth = date_birth;
         this.gender = gender;
         this.password = password;
-        this.misVehiculos = misVehiculos;
-        this.FavVehiculos = FavVehiculos;
     }
 
     
@@ -76,46 +72,4 @@ public class User implements Serializable {
     public void setDate_birth(String date_birth) {
         this.date_birth = date_birth;
     }
-
-    
-
-
-    public DoublyLinkedList<Vehiculos> getMisVehiculos() {
-        return misVehiculos;
-    }
-
-
-
-    public void setMisVehiculos(DoublyLinkedList<Vehiculos> misVehiculos) {
-        this.misVehiculos = misVehiculos;
-    }
-
-    
-    public void addMisvehiculos(Vehiculos vehiculo){
-        misVehiculos.addLast(vehiculo);
-
-    }
-
-
-
-    public DoublyLinkedList<Vehiculos> getFavVehiculos() {
-        return FavVehiculos;
-    }
-
-
-
-    public void setFavVehiculos(DoublyLinkedList<Vehiculos> favVehiculos) {
-        FavVehiculos = favVehiculos;
-    }
-
-
-
-    public void addFavMisvehiculos(Vehiculos vehiculo){
-        misVehiculos.addLast(vehiculo);
-
-    }
-
-
-    
-    
 }

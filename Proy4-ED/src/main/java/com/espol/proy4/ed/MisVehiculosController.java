@@ -93,10 +93,10 @@ public class MisVehiculosController implements Initializable {
     private ComboBox estadoVehiculo;
     
     User usuario = App.userlogged;
-    private DoublyLinkedList<Vehiculos> listaVehiculo = usuario.getMisVehiculos(); // Aquí se inicia el DoublyCircularLinkedList
+    //private DoublyLinkedList<Vehiculos> listaVehiculo = usuario.getMisVehiculos(); // Aquí se inicia el DoublyCircularLinkedList
     private CircularDoublyList<String> imagenes; // Imagenes que usa el vehiculo
     private DoublyNodeList<String> rutaImagen; // Nodo imagen 
-    private DoublyNodeList<Vehiculos> vehiculoUsar; // Aquí se almacena el vehiculo que usa en pantalla
+    private DoublyNodeList<Vehiculo> vehiculoUsar; // Aquí se almacena el vehiculo que usa en pantalla
     /**
      * Initializes the controller class.
      */
@@ -104,8 +104,8 @@ public class MisVehiculosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         estadoVehiculo.getItems().addAll("Diponible", "Vendido", "No disponible" );
         
-        vehiculoUsar = listaVehiculo.getHeader(); 
-        Vehiculos vehiculo = vehiculoUsar.getContent();
+        //vehiculoUsar = listaVehiculo.getHeader(); 
+        Vehiculo vehiculo = vehiculoUsar.getContent();
         marca.setText(vehiculo.getMarca());
         modelo.setText(vehiculo.getModelo());
         motor.setText(vehiculo.getMotor());
@@ -182,7 +182,7 @@ public class MisVehiculosController implements Initializable {
        
         if(vehiculoUsar.getNext()!=null){
             vehiculoUsar = vehiculoUsar.getNext();
-            Vehiculos vehiculo = vehiculoUsar.getContent();
+            Vehiculo vehiculo = vehiculoUsar.getContent();
             marca.setText(vehiculo.getMarca());
             modelo.setText(vehiculo.getModelo());
 
@@ -244,7 +244,7 @@ public class MisVehiculosController implements Initializable {
        
        if(vehiculoUsar.getPrevious()!=null){
             vehiculoUsar = vehiculoUsar.getNext();
-            Vehiculos vehiculo = vehiculoUsar.getContent();
+            Vehiculo vehiculo = vehiculoUsar.getContent();
             marca.setText(vehiculo.getMarca());
             modelo.setText(vehiculo.getModelo());
 
@@ -320,7 +320,7 @@ public class MisVehiculosController implements Initializable {
         vehiculoEditar.setVisible(true);
         
         
-        Vehiculos vehiculo = vehiculoUsar.getContent();
+        Vehiculo vehiculo = vehiculoUsar.getContent();
         marca1.setText(vehiculo.getMarca());
         modelo1.setText(vehiculo.getModelo());
         

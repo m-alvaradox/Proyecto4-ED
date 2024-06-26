@@ -19,11 +19,12 @@ import Objects.AtributoAdicional;
 import Objects.EstadoD;
 import Objects.Historial;
 import Objects.User;
-import Objects.Vehiculos;
+import Objects.Vehiculo;
 import Objects.tipoHistorial;
 import TDAS.ArrayList;
 import TDAS.CircularDoublyList;
 import TDAS.DoublyLinkedList;
+import java.nio.file.StandardCopyOption;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -85,7 +86,7 @@ public class CrearVentaController implements Initializable {
      */
 
     User usuario = App.userlogged;
-    DoublyLinkedList<Vehiculos> L_Vehiculos = usuario.getMisVehiculos();
+    //DoublyLinkedList<Vehiculos> L_Vehiculos = usuario.getMisVehiculos();
     //ListaVehiculos catalogo = App.getCatalogo();
 
     @Override
@@ -164,32 +165,39 @@ public class CrearVentaController implements Initializable {
         hb.getStyleClass().add("caja_imagen");
         cerrar.setFitWidth(12);
         cerrar.setFitHeight(12);
+        
         File imageSelected;
         FileChooser file = new FileChooser();
         file.setTitle("Seleccionar imagen");
-        file.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("*.png","*.jpg"));
+        file.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG","*.jpg"),
+                new FileChooser.ExtensionFilter("PNG","*.png"));
+        
         Stage stage = (Stage) btonSeleccionarImagen.getScene().getWindow();
         imageSelected = file.showOpenDialog(stage);
+        
         if(imageSelected!=null){
-            try{
-                Image image = new Image(new FileInputStream(imageSelected));
-                String ruta= imageSelected.getName(); // ruta para guardar la imagen;
-                Path projectDir = Paths.get("").toAbsolutePath();
-                Path rutaDestino =  projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", ruta));
-                Files.copy(imageSelected.toPath(), rutaDestino);
+
+                Path from = Paths.get(imageSelected.toURI());
+                Path to =  Paths.get("src\\main\\resources\\imagenesCarros\\"+imageSelected.getName());
+
+                try {
+                  Files.copy(from, to,StandardCopyOption.REPLACE_EXISTING);
+              } catch (IOException ex) {
+                    System.out.println("Error en la copia del archivo");
+              }
+                
                 rutaImagen.setText(imageSelected.getName());
                 imagenesPane.getChildren().add(hb);
+                
                 cerrar.setOnMouseClicked((event)-> {
                     try {
-                        Files.delete(rutaDestino);
+                        Files.delete(to);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }  
                     imagenesPane.getChildren().remove(hb);
+                    
                 });
-            }catch(FileNotFoundException e){
-                e.printStackTrace();
-            }    
         }
     }
     @FXML
@@ -276,13 +284,10 @@ public class CrearVentaController implements Initializable {
             
             if(!listaImagenes.isEmpty()){ // verifica que la lista de imagenes no esté vacía
                 // Por predeterminado se pone el Vehiculo en venta
-                Vehiculos v1 =  new Vehiculos(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, EstadoD.Disponible, listaImagenes, listaHistorial, listaAtributosAdicionales);
-                if(L_Vehiculos==null){
-                    L_Vehiculos = new DoublyLinkedList<>();
-                }
-                L_Vehiculos.addLast(v1);
-                usuario.setMisVehiculos(L_Vehiculos);
-               // App.ActualizarListaUsuarios();
+                Vehiculo v1 =  new Vehiculo(marca1, modelo1, year1, precio1, kilometraje1, motor1, transmision1, peso1, ubicacion1, EstadoD.Disponible, listaImagenes, listaHistorial, listaAtributosAdicionales, usuario);
+                App.vehiculos.addFirst(v1);
+                App.ActualizarListaVehiculos();
+                
                 Alert alert= new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Creación de Venta exitoso");
                 alert.setTitle("Se guardaron los datos");

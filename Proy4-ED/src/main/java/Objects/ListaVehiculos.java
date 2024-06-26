@@ -7,35 +7,35 @@ import java.util.Collections;
 
 public class ListaVehiculos implements Comparator{
     
-    private DoublyLinkedList <Vehiculos> vehiculos = new DoublyLinkedList<>();
+    private DoublyLinkedList <Vehiculo> vehiculos = new DoublyLinkedList<>();
 
     public ListaVehiculos() {
-        this.vehiculos = new DoublyLinkedList<Vehiculos>();
+        this.vehiculos = new DoublyLinkedList<Vehiculo>();
     }
 
-    public void agregarVehiculo(Vehiculos vehiculo) {
+    public void agregarVehiculo(Vehiculo vehiculo) {
         vehiculos.addLast(vehiculo);
     }
 
-    public void eliminarVehiculo(Vehiculos vehiculo) {
+    public void eliminarVehiculo(Vehiculo vehiculo) {
         vehiculos.eliminar(vehiculo);
     }
 
-    public DoublyLinkedList<Vehiculos> getVehiculos() {
+    public DoublyLinkedList<Vehiculo> getVehiculos() {
         return vehiculos;
     }
 
-    public DoublyLinkedList<Vehiculos> ordenarPorPrecio() {
+    public DoublyLinkedList<Vehiculo> ordenarPorPrecio() {
             
 
         return vehiculos;
     }
 
-    public DoublyLinkedList<Vehiculos> ordenarPorKilometraje(Comparator cmp) {
+    public DoublyLinkedList<Vehiculo> ordenarPorKilometraje(Comparator cmp) {
         return vehiculos;
     }
 
-    public DoublyLinkedList<Vehiculos> filtrarPorCriterios(Comparator cmp) {
+    public DoublyLinkedList<Vehiculo> filtrarPorCriterios(Comparator cmp) {
         return vehiculos;
     }
 

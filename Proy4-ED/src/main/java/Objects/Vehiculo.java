@@ -4,7 +4,7 @@ import TDAS.ArrayList;
 import TDAS.CircularDoublyList;
 import java.io.Serializable;
 
-public class Vehiculos implements Serializable {
+public class Vehiculo implements Serializable {
     private String marca;
     private String modelo;
     private int anio;
@@ -18,12 +18,13 @@ public class Vehiculos implements Serializable {
     private CircularDoublyList<String> fotos = new CircularDoublyList<>();
     private ArrayList<Historial> historial = new ArrayList<>();
     private ArrayList<AtributoAdicional> AtributoAdicional = new ArrayList<>();
+    private User vendedor;
 
 
 
-    public Vehiculos(String marca, String modelo, int anio, double precio, int kilometraje, String motor,
+    public Vehiculo(String marca, String modelo, int anio, double precio, int kilometraje, String motor,
             String transmision, double peso, String ubicacion,EstadoD estado,CircularDoublyList<String> fotos,
-            ArrayList<Historial> historial, ArrayList<AtributoAdicional> AtributoAdicional) {
+            ArrayList<Historial> historial, ArrayList<AtributoAdicional> AtributoAdicional, User vendedor) {
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
@@ -37,8 +38,19 @@ public class Vehiculos implements Serializable {
         this.historial = historial;
         this.estado = estado;
         this.AtributoAdicional = AtributoAdicional;
+        this.vendedor = vendedor;
 
     }
+
+    public User getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(User vendedor) {
+        this.vendedor = vendedor;
+    }
+    
+    
 
 
     public String getMarca() {
@@ -144,7 +156,7 @@ public class Vehiculos implements Serializable {
     }
 
 
-    public void AgegrarFoto(String s){
+    public void AgregarFoto(String s){
         fotos.addLast(s);
     }
 

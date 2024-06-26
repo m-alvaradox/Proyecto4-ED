@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import Objects.Vehiculos;
+import Objects.Vehiculo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -77,7 +77,7 @@ public class RegistroController {
                 alert.setContentText(msgerr);
                 alert.showAndWait();
             } else {
-                App.createUser(new User(nom, ape, user, naci, genero, contra, null, null));
+                App.createUser(new User(nom, ape, user, naci, genero, contra));
                 
                 Alert alert= new Alert(AlertType.INFORMATION);
                 alert.setHeaderText("Creación de cuenta");

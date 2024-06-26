@@ -8,7 +8,9 @@ import java.io.ObjectOutputStream;
 
 import Objects.ListaVehiculos;
 import Objects.User;
+import Objects.Vehiculo;
 import TDAS.ArrayList;
+import TDAS.DoublyLinkedList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,10 +24,20 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private static Scene scene;
-    public static String fileusers = "src\\main\\resources\\datos\\usuarios.ser";
-    public static String fileimages = "imagenes/";
-    public static ArrayList<User> usuarios = loadUsers();
     public static User userlogged = null;
+    
+    // rutas
+    public static String fileusers = "src\\main\\resources\\datos\\usuarios.ser";
+    public static String filecars = "src\\main\\resources\\datos\\vehiculos.ser";
+    public static String fileimages = "imagenes/";
+    
+    public static ArrayList<User> usuarios = loadUsers();
+    public static DoublyLinkedList<Vehiculo> vehiculos = loadCars();
+
+    
+
+   
+
     public ListaVehiculos catalogo = new ListaVehiculos();
 
     @Override
@@ -67,6 +79,19 @@ public class App extends Application {
         return users_list;
        
     }
+    
+     private static DoublyLinkedList<Vehiculo> loadCars() {
+        
+        DoublyLinkedList<Vehiculo> cars_list = new DoublyLinkedList<>();
+
+        try(ObjectInputStream oit = new ObjectInputStream(new FileInputStream(App.fileusers))) {
+            cars_list = (DoublyLinkedList<Vehiculo>) oit.readObject();
+        } catch(Exception e) {
+            System.out.println("No hay ningun vehiculo por el momento");
+        }
+        
+        return cars_list;
+    }
 
     public static void createUser(User user) {
         
@@ -88,6 +113,15 @@ public class App extends Application {
     public static void ActualizarListaUsuarios(){
         try(ObjectOutputStream out1 = new ObjectOutputStream(new FileOutputStream(fileusers))) {
             out1.writeObject(usuarios);
+            out1.flush();
+        } catch(IOException ex) {
+            System.out.println("Error al encontrar el archivo");  
+        }
+    }
+    
+    static void ActualizarListaVehiculos() {
+        try(ObjectOutputStream out1 = new ObjectOutputStream(new FileOutputStream(filecars))) {
+            out1.writeObject(vehiculos);
             out1.flush();
         } catch(IOException ex) {
             System.out.println("Error al encontrar el archivo");  

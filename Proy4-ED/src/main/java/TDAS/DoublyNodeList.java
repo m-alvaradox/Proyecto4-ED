@@ -4,7 +4,7 @@
  */
 package TDAS;
 
-import Objects.Vehiculos;
+import Objects.Vehiculo;
 
 /**
  *
