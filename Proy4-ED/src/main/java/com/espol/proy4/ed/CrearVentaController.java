@@ -168,7 +168,7 @@ public class CrearVentaController implements Initializable {
         File imageSelected;
         FileChooser file = new FileChooser();
         file.setTitle("Seleccionar imagen");
-        file.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("*.png","*.jpg"));
+        file.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("*.png","*.jpg", "*.jpeg"));
         Stage stage = (Stage) btonSeleccionarImagen.getScene().getWindow();
         imageSelected = file.showOpenDialog(stage);
         if(imageSelected!=null){
@@ -283,6 +283,8 @@ public class CrearVentaController implements Initializable {
                 }
                 L_Vehiculos.addLast(v1);
                 App.userlogged.setMisVehiculos(L_Vehiculos);
+                App.catalogo.agregarVehiculo(v1);
+                App.ActualizarListaCars();
                 App.ActualizarListaUsuarios();
                 Alert alert= new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Creación de Venta exitoso");

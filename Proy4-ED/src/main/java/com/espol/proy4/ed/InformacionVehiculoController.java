@@ -4,18 +4,25 @@
  */
 package com.espol.proy4.ed;
 
+import Objects.*;
+import TDAS.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import TDAS.CircularDoublyList;
 import TDAS.DoublyNodeList;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -54,6 +61,8 @@ public class InformacionVehiculoController implements Initializable {
     @FXML
     private ImageView imagen;
     
+    DoublyNodeList<Vehiculos> vehiculoUsar = CatalogoController.vehiculoUsar;
+    
     
     
     private CircularDoublyList<String> imagenes; // Imagenes que usa el vehiculo
@@ -65,19 +74,39 @@ public class InformacionVehiculoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        /*
-        Vehiculo vehiculo = vehiculoUsar.getContent();
+        
+        Vehiculos vehiculo = vehiculoUsar.getContent();
         marca.setText(vehiculo.getMarca());
         modelo.setText(vehiculo.getModelo());
+        motor.setText(vehiculo.getMotor());
+        ubicacion.setText(vehiculo.getUbicacion());
+        kilometraje.setText(vehiculo.getKilometraje()+"");
+        precio.setText(vehiculo.getPrecio()+"");
+        year.setText(vehiculo.getAnio()+"");
+        peso.setText(vehiculo.getPeso()+"");
+        transmision.setText(vehiculo.getTransmision());
         
         // Aquí se debe mostrar todos los datos
         
-        ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributos();
-        ArrayList<Historial> listaHistorial = vehiculo.getHistorial();
+        ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributoAdicional();
+        ArrayList<Historial> listaHistorial = vehiculo.gethistorial();
         
-        imagenes= vehiculo.getListaImagenes();// Doubly linked list para mostrar imagenes
+        imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
         rutaImagen = imagenes.getHeader();
-        imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
+        //InputStream inputStream = getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent());
+
+        Path projectDir = Paths.get("").toAbsolutePath();
+            Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+            //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
+            File archivoImagen = rutaAbsoluta.toFile();
+            if (!archivoImagen.exists()) {
+                System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+                return;
+            }
+
+            // Carga la nueva imagen
+            Image image1 = new Image(archivoImagen.toURI().toString());
+            imagen.setImage(image1);
         for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
             AtributoAdicional a= listaAtributos.get(i);
             HBox hb = new HBox();
@@ -116,7 +145,6 @@ public class InformacionVehiculoController implements Initializable {
             hb.getChildren().addAll(image,tipo, fecha, descripcion);
             paneHistorial.getChildren().add(hb);
         }
-        */
     }  
     
     @FXML

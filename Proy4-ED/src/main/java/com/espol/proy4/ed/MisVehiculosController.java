@@ -93,7 +93,7 @@ public class MisVehiculosController implements Initializable {
     @FXML
     private ComboBox estadoVehiculo;
     
-    User usuario = App.userlogged;
+    User usuario;
     private DoublyLinkedList<Vehiculos> listaVehiculo;// Aquí se inicia el DoublyCircularLinkedList
     private CircularDoublyList<String> imagenes; // Imagenes que usa el vehiculo
     private DoublyNodeList<String> rutaImagen; // Nodo imagen 
@@ -104,6 +104,7 @@ public class MisVehiculosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         estadoVehiculo.getItems().addAll("Diponible", "Vendido", "No disponible" );
+        usuario = App.userlogged;
         listaVehiculo = usuario.getMisVehiculos(); 
 
         vehiculoUsar = listaVehiculo.getHeader(); 
@@ -127,7 +128,17 @@ public class MisVehiculosController implements Initializable {
         rutaImagen = imagenes.getHeader();
         //InputStream inputStream = getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent());
 
-        imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
+        Path projectDir = Paths.get("").toAbsolutePath();
+        Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+        //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
+        File archivoImagen = rutaAbsoluta.toFile();
+        if (!archivoImagen.exists()) {
+            System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+            return;
+        }
+        // Carga la nueva imagen
+        Image image1 = new Image(archivoImagen.toURI().toString());
+        imagen.setImage(image1);
         for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
             AtributoAdicional a= listaAtributos.get(i);
             HBox hb = new HBox();
@@ -277,7 +288,18 @@ public class MisVehiculosController implements Initializable {
 
             imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
             rutaImagen = imagenes.getHeader();
-            imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
+            Path projectDir = Paths.get("").toAbsolutePath();
+            Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+            //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
+            File archivoImagen = rutaAbsoluta.toFile();
+            if (!archivoImagen.exists()) {
+                System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+                return;
+            }
+
+            // Carga la nueva imagen
+            Image image1 = new Image(archivoImagen.toURI().toString());
+            imagen.setImage(image1);
             for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
                 AtributoAdicional a= listaAtributos.get(i);
                 HBox hb = new HBox();
@@ -327,13 +349,35 @@ public class MisVehiculosController implements Initializable {
    @FXML
    private void siguienteImagen() throws IOException{ 
        rutaImagen = rutaImagen.getNext();
-       imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
+       Path projectDir = Paths.get("").toAbsolutePath();
+       Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+       //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
+       File archivoImagen = rutaAbsoluta.toFile();
+       if (!archivoImagen.exists()) {
+            System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+            return;
+        }
+
+        // Carga la nueva imagen
+        Image image1 = new Image(archivoImagen.toURI().toString());
+        imagen.setImage(image1);
    }
    
    @FXML
    private void atrasImagen() throws IOException{
        rutaImagen = rutaImagen.getPrevious();
-       imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
+       Path projectDir = Paths.get("").toAbsolutePath();
+       Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+       //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
+       File archivoImagen = rutaAbsoluta.toFile();
+        if (!archivoImagen.exists()) {
+            System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+            return;
+        }
+
+            // Carga la nueva imagen
+            Image image1 = new Image(archivoImagen.toURI().toString());
+            imagen.setImage(image1);
    }
    
    @FXML

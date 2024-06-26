@@ -23,10 +23,11 @@ public class App extends Application {
 
     private static Scene scene;
     public static String fileusers = "src\\main\\resources\\datos\\usuarios.ser";
+    public static String filecars = "src\\main\\resources\\datos\\vehiculos.ser";
     public static String fileimages = "imagenes/";
     public static ArrayList<User> usuarios = loadUsers();
     public static User userlogged = null;
-    public ListaVehiculos catalogo = new ListaVehiculos();
+    public static ListaVehiculos catalogo = loadCars();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -44,7 +45,6 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    
 
     public static void main(String[] args) {
         launch();
@@ -63,9 +63,18 @@ public class App extends Application {
         } catch(Exception e) {
             System.out.println("No hay ningun usuario por el momento");
         }
-        
         return users_list;
-       
+    }
+    
+    public static ListaVehiculos loadCars() {
+
+        ListaVehiculos cars_list = new ListaVehiculos();
+        try(ObjectInputStream oit = new ObjectInputStream(new FileInputStream(App.filecars))) {
+            cars_list = (ListaVehiculos) oit.readObject();
+        } catch(Exception e) {
+            System.out.println("No hay ningun usuario por el momento");
+        }
+        return cars_list;
     }
 
     public static void createUser(User user) {
@@ -93,19 +102,29 @@ public class App extends Application {
             System.out.println("Error al encontrar el archivo: " + ex.getMessage());
             ex.printStackTrace();  // Esto imprime la traza completa de la excepción
         }
-       // usuarios = loadUsers();
-       // actualizarUsuarioEnLista();
+       //usuarios = loadUsers();
+       //actualizarUsuarioEnLista();
     }
     
-   public static void actualizarUsuarioEnLista() {
-    for (int i = 0; i < usuarios.size(); i++) {
-        User usuario = usuarios.get(i);
-        if (usuario.getUsername().equals(userlogged.getUsername())) {
-            userlogged = usuario;
+    public static void ActualizarListaCars(){
+        try(ObjectOutputStream out1 = new ObjectOutputStream(new FileOutputStream(filecars))) {
+            out1.writeObject(catalogo);
+            out1.flush();
+        } catch(IOException ex) {
+            System.out.println("Error al encontrar el archivo: " + ex.getMessage());
+            ex.printStackTrace();  // Esto imprime la traza completa de la excepción
         }
     }
-   }
-    
+   
+    public static void actualizarUsuarioEnLista() {
+        for (int i = 0; i < usuarios.size(); i++) {
+            User usuario = usuarios.get(i);
+            if (usuario.getUsername().equals(userlogged.getUsername())) {
+                userlogged = usuario;
+            }
+        }
+    }    
+        
     public ListaVehiculos getCatalogo() {
         return catalogo;
     }
