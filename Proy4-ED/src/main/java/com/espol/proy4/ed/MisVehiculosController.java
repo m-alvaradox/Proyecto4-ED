@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -36,6 +37,8 @@ import javafx.scene.layout.VBox;
  */
 public class MisVehiculosController implements Initializable {
     
+    @FXML
+    private BorderPane sinVehiculo; // muestra esta escena si no hay vehiculos
     @FXML
     private VBox paneHistorial;
     @FXML
@@ -91,7 +94,7 @@ public class MisVehiculosController implements Initializable {
     @FXML
     private ImageView imagen1;
     @FXML
-    private ComboBox estadoVehiculo;
+    private ComboBox<EstadoD> estadoVehiculo;
     
     User usuario;
     private DoublyLinkedList<Vehiculos> listaVehiculo;// Aquí se inicia el DoublyCircularLinkedList
@@ -103,81 +106,84 @@ public class MisVehiculosController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        estadoVehiculo.getItems().addAll("Diponible", "Vendido", "No disponible" );
+        estadoVehiculo.getItems().addAll(EstadoD.values());
         usuario = App.userlogged;
+        
         listaVehiculo = usuario.getMisVehiculos(); 
+        if(listaVehiculo!=null){
+            vehiculoUsar = listaVehiculo.getHeader(); 
+            Vehiculos vehiculo = vehiculoUsar.getContent();
+            estadoVehiculo.getSelectionModel().select(vehiculo.getEstado());
+            marca.setText(vehiculo.getMarca());
+            modelo.setText(vehiculo.getModelo());
+            motor.setText(vehiculo.getMotor());
+            ubicacion.setText(vehiculo.getUbicacion());
+            kilometraje.setText(vehiculo.getKilometraje()+"");
+            precio.setText(vehiculo.getPrecio()+"");
+            year.setText(vehiculo.getAnio()+"");
+            peso.setText(vehiculo.getPeso()+"");
+            transmision.setText(vehiculo.getTransmision());
 
-        vehiculoUsar = listaVehiculo.getHeader(); 
-        Vehiculos vehiculo = vehiculoUsar.getContent();
-        marca.setText(vehiculo.getMarca());
-        modelo.setText(vehiculo.getModelo());
-        motor.setText(vehiculo.getMotor());
-        ubicacion.setText(vehiculo.getUbicacion());
-        kilometraje.setText(vehiculo.getKilometraje()+"");
-        precio.setText(vehiculo.getPrecio()+"");
-        year.setText(vehiculo.getAnio()+"");
-        peso.setText(vehiculo.getPeso()+"");
-        transmision.setText(vehiculo.getTransmision());
-        
-        // Aquí se debe mostrar todos los datos
-        
-        ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributoAdicional();
-        ArrayList<Historial> listaHistorial = vehiculo.gethistorial();
-        
-        imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
-        rutaImagen = imagenes.getHeader();
-        //InputStream inputStream = getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent());
+            // Aquí se debe mostrar todos los datos
 
-        Path projectDir = Paths.get("").toAbsolutePath();
-        Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
-        //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
-        File archivoImagen = rutaAbsoluta.toFile();
-        if (!archivoImagen.exists()) {
-            System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
-            return;
-        }
-        // Carga la nueva imagen
-        Image image1 = new Image(archivoImagen.toURI().toString());
-        imagen.setImage(image1);
-        for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
-            AtributoAdicional a= listaAtributos.get(i);
-            HBox hb = new HBox();
-            hb.setAlignment(Pos.CENTER_LEFT);
-            hb.setSpacing(5);
-            ImageView image = new ImageView(new Image("/imagenes/punto.png"));
-            image.setFitWidth(11);
-            image.setFitHeight(8);
-            Label title = new Label();
-            title.setText(a.getTitle());
-            Label descripcion = new Label();
-            descripcion.setText(a.getDescripcion());
-            title.getStyleClass().add("text-atributos");
-            descripcion.getStyleClass().add("texto_login");
-            hb.getChildren().addAll(image, title, descripcion);
-            paneAtributos.getChildren().add(hb);
-        }
-        
-        for(int i=0; i<listaHistorial.size(); i++){
-            Historial h = listaHistorial.get(i);
-            HBox hb = new HBox();
-            hb.setAlignment(Pos.CENTER_LEFT);
-            hb.setSpacing(5);
-            ImageView image = new ImageView(new Image("/imagenes/punto.png"));
-            image.setFitWidth(11);
-            image.setFitHeight(8);
-            Label tipo = new Label();
-            tipo.setText(h.getTipo().toString());
-            Label fecha = new Label();
-            fecha.setText(h.getFecha());
-            Label descripcion = new Label();
-            descripcion.setText(h.getDescripcion());
-            tipo.getStyleClass().add("text-atributos");
-            descripcion.getStyleClass().add("texto_login");
-            fecha.getStyleClass().add("texto_login");
-            hb.getChildren().addAll(image,tipo, fecha, descripcion);
-            paneHistorial.getChildren().add(hb);
-        }
-        
+            ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributoAdicional();
+            ArrayList<Historial> listaHistorial = vehiculo.gethistorial();
+
+            imagenes= vehiculo.getFotos();// Doubly linked list para mostrar imagenes
+            rutaImagen = imagenes.getHeader();
+
+            Path projectDir = Paths.get("").toAbsolutePath();
+            Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+            File archivoImagen = rutaAbsoluta.toFile();
+            if (!archivoImagen.exists()) {
+                System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+                return;
+            }
+            // Carga la nueva imagen
+            Image image1 = new Image(archivoImagen.toURI().toString());
+            imagen.setImage(image1);
+            for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
+                AtributoAdicional a= listaAtributos.get(i);
+                HBox hb = new HBox();
+                hb.setAlignment(Pos.CENTER_LEFT);
+                hb.setSpacing(5);
+                ImageView image = new ImageView(new Image("/imagenes/punto.png"));
+                image.setFitWidth(11);
+                image.setFitHeight(8);
+                Label title = new Label();
+                title.setText(a.getTitle());
+                Label descripcion = new Label();
+                descripcion.setText(a.getDescripcion());
+                title.getStyleClass().add("text-atributos");
+                descripcion.getStyleClass().add("texto_login");
+                hb.getChildren().addAll(image, title, descripcion);
+                paneAtributos.getChildren().add(hb);
+            }
+
+            for(int i=0; i<listaHistorial.size(); i++){
+                Historial h = listaHistorial.get(i);
+                HBox hb = new HBox();
+                hb.setAlignment(Pos.CENTER_LEFT);
+                hb.setSpacing(5);
+                ImageView image = new ImageView(new Image("/imagenes/punto.png"));
+                image.setFitWidth(11);
+                image.setFitHeight(8);
+                Label tipo = new Label();
+                tipo.setText(h.getTipo().toString());
+                Label fecha = new Label();
+                fecha.setText(h.getFecha());
+                Label descripcion = new Label();
+                descripcion.setText(h.getDescripcion());
+                tipo.getStyleClass().add("text-atributos");
+                descripcion.getStyleClass().add("texto_login");
+                fecha.getStyleClass().add("texto_login");
+                hb.getChildren().addAll(image,tipo, fecha, descripcion);
+                paneHistorial.getChildren().add(hb);
+            }
+        } else {
+            vehiculoMostrado.setVisible(false);
+            sinVehiculo.setVisible(true);
+        }     
     }  
     
     @FXML
@@ -193,6 +199,7 @@ public class MisVehiculosController implements Initializable {
             paneHistorial.getChildren().clear();
             vehiculoUsar = vehiculoUsar.getNext();
             Vehiculos vehiculo = vehiculoUsar.getContent();
+            estadoVehiculo.getSelectionModel().select(vehiculo.getEstado());
             marca.setText(vehiculo.getMarca());
             modelo.setText(vehiculo.getModelo());
             motor.setText(vehiculo.getMotor());
@@ -212,7 +219,6 @@ public class MisVehiculosController implements Initializable {
             rutaImagen = imagenes.getHeader();
             Path projectDir = Paths.get("").toAbsolutePath();
             Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
-            //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
             File archivoImagen = rutaAbsoluta.toFile();
             if (!archivoImagen.exists()) {
                 System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
@@ -263,6 +269,14 @@ public class MisVehiculosController implements Initializable {
         } else {
                 
             //Mostrar alerta que ya no existen Vehiculos;
+            Alert alert= new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Siguiente Vehiculo");
+            alert.setTitle("No existen más datos");
+            alert.setContentText("Ya no existen más vehículos agregados");
+            String css = this.getClass().getResource("/styles/estilos.css").toExternalForm();
+            alert.getDialogPane().getStylesheets().add(css);
+            alert.getDialogPane().getStyleClass().add("dialog-paneConfirmacion");
+            alert.showAndWait();
        }
         
     }
@@ -275,6 +289,7 @@ public class MisVehiculosController implements Initializable {
             paneHistorial.getChildren().clear();
             vehiculoUsar = vehiculoUsar.getPrevious();
             Vehiculos vehiculo = vehiculoUsar.getContent();
+            estadoVehiculo.getSelectionModel().select(vehiculo.getEstado());
             marca.setText(vehiculo.getMarca());
             modelo.setText(vehiculo.getModelo());
             motor.setText(vehiculo.getMotor());
@@ -345,7 +360,14 @@ public class MisVehiculosController implements Initializable {
        } else {
            
            // Mostrar alerta que ya no existen más vehiculos a mostrar;
-           
+           Alert alert= new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Siguiente Vehiculo");
+            alert.setTitle("No existen más datos");
+            alert.setContentText("Este es el primer vehículo.");
+            String css = this.getClass().getResource("/styles/estilos.css").toExternalForm();
+            alert.getDialogPane().getStylesheets().add(css);
+            alert.getDialogPane().getStyleClass().add("dialog-paneConfirmacion");
+            alert.showAndWait();
        }
        
    }
@@ -355,7 +377,6 @@ public class MisVehiculosController implements Initializable {
        rutaImagen = rutaImagen.getNext();
        Path projectDir = Paths.get("").toAbsolutePath();
        Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
-       //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
        File archivoImagen = rutaAbsoluta.toFile();
        if (!archivoImagen.exists()) {
             System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
@@ -372,13 +393,11 @@ public class MisVehiculosController implements Initializable {
        rutaImagen = rutaImagen.getPrevious();
        Path projectDir = Paths.get("").toAbsolutePath();
        Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
-       //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
        File archivoImagen = rutaAbsoluta.toFile();
         if (!archivoImagen.exists()) {
             System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
             return;
         }
-
             // Carga la nueva imagen
             Image image1 = new Image(archivoImagen.toURI().toString());
             imagen.setImage(image1);
@@ -388,18 +407,33 @@ public class MisVehiculosController implements Initializable {
    private void editarVehiculo() throws IOException{
         vehiculoMostrado.setVisible(false);
         vehiculoEditar.setVisible(true);
-        
-        
+        paneAtributos.getChildren().clear();
+        paneHistorial.getChildren().clear();
         Vehiculos vehiculo = vehiculoUsar.getContent();
         marca1.setText(vehiculo.getMarca());
         modelo1.setText(vehiculo.getModelo());
+        motor1.setText(vehiculo.getMotor());
+        ubicacion1.setText(vehiculo.getUbicacion());
+        kilometraje1.setText(vehiculo.getKilometraje()+"");
+        precio1.setText(vehiculo.getPrecio()+"");
+        year1.setText(vehiculo.getAnio()+"");
+        peso1.setText(vehiculo.getPeso()+"");
+        transmision1.setText(vehiculo.getTransmision());
         
         // Aquí se debe mostrar todos los datos
         
         ArrayList<AtributoAdicional> listaAtributos = vehiculo.getAtributoAdicional();
         ArrayList<Historial> listaHistorial = vehiculo.gethistorial();
-        String rutaCompleta = "/imagenesCarros/"+ rutaImagen.getContent();
-        imagen.setImage(new Image(rutaCompleta));
+        Path projectDir = Paths.get("").toAbsolutePath();
+        Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+        File archivoImagen = rutaAbsoluta.toFile();
+        if (!archivoImagen.exists()) {
+            System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+            return;
+        }
+        // Carga la nueva imagen
+        Image image1 = new Image(archivoImagen.toURI().toString());
+        imagen1.setImage(image1);
         for(int i=0; i<listaAtributos.size(); i++){        // Aquí se llenan los Atributos adicionales
             AtributoAdicional a= listaAtributos.get(i);
             HBox hb = new HBox();
@@ -430,7 +464,7 @@ public class MisVehiculosController implements Initializable {
             ImageView image = new ImageView(new Image("/imagenes/cerrar.png"));
             image.setFitWidth(17);
             image.setFitHeight(14);
-            ComboBox<tipoHistorial> tipo = new ComboBox();
+            ComboBox<tipoHistorial> tipo = new ComboBox<>();
             tipo.getItems().addAll(tipoHistorial.values());
             tipo.getSelectionModel().select(h.getTipo());
             DatePicker fecha = new DatePicker();
@@ -471,17 +505,45 @@ public class MisVehiculosController implements Initializable {
    @FXML
    private void siguienteImagenEditar() throws IOException {
        rutaImagen = rutaImagen.getNext();
-       imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
+       Path projectDir = Paths.get("").toAbsolutePath();
+       Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+       File archivoImagen = rutaAbsoluta.toFile();
+        if (!archivoImagen.exists()) {
+            System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+            return;
+        }
+            // Carga la nueva imagen
+            Image image1 = new Image(archivoImagen.toURI().toString());
+            imagen1.setImage(image1);
    }
    
    @FXML
    private void atrasImagenEditar() throws IOException {
        rutaImagen = rutaImagen.getPrevious();
-       imagen.setImage(new Image("imagenesCarros/"+ rutaImagen.getContent()));
+       Path projectDir = Paths.get("").toAbsolutePath();
+       Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
+       File archivoImagen = rutaAbsoluta.toFile();
+        if (!archivoImagen.exists()) {
+            System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
+            return;
+        }
+            // Carga la nueva imagen
+            Image image1 = new Image(archivoImagen.toURI().toString());
+            imagen1.setImage(image1);
    }
    
    @FXML
    private void guardarVehiculo() throws IOException {
+       EstadoD estado = estadoVehiculo.getSelectionModel().getSelectedItem();
+       if(estado== EstadoD.NoDisponible){
+           App.catalogo.eliminarVehiculo(vehiculoUsar.getContent());
+           App.ActualizarListaCars();
+           
+       }
+       
+       // Aquí se debe actualizar todos los datos;
+       
+       App.ActualizarListaUsuarios();
        vehiculoMostrado.setVisible(true);
        vehiculoEditar.setVisible(false);
        

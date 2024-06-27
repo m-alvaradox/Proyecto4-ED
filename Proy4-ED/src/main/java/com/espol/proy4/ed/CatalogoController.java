@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -98,7 +99,6 @@ public class CatalogoController implements Initializable {
             DoublyNodeList<String> rutaImagen = vehiculo.getFotos().getHeader();
             Path projectDir = Paths.get("").toAbsolutePath();
             Path rutaAbsoluta = projectDir.resolve(Paths.get("src/main/resources/imagenesCarros", rutaImagen.getContent()));
-            //imagen.setImage(new Image(getClass().getResourceAsStream("/imagenesCarros/" + rutaImagen.getContent())));
             File archivoImagen = rutaAbsoluta.toFile();
             if (!archivoImagen.exists()) {
                 System.out.println("La imagen no se encuentra en la ruta especificada: " + rutaAbsoluta.toString());
@@ -108,6 +108,16 @@ public class CatalogoController implements Initializable {
             // Carga la nueva imagen
             Image image1 = new Image(archivoImagen.toURI().toString());
             imagen.setImage(image1);
+        }else {
+             //Mostrar alerta que ya no existen Vehiculos;
+            Alert alert= new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Siguiente Vehiculo");
+            alert.setTitle("No existen más datos");
+            alert.setContentText("Ya no existen más vehículos agregados");
+            String css = this.getClass().getResource("/styles/estilos.css").toExternalForm();
+            alert.getDialogPane().getStylesheets().add(css);
+            alert.getDialogPane().getStyleClass().add("dialog-paneConfirmacion");
+            alert.showAndWait();
         }
     }
     
@@ -134,6 +144,15 @@ public class CatalogoController implements Initializable {
             // Carga la nueva imagen
             Image image1 = new Image(archivoImagen.toURI().toString());
             imagen.setImage(image1);
+        }else {
+            Alert alert= new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Siguiente Vehiculo");
+            alert.setTitle("No existen más datos");
+            alert.setContentText("Este es el primer vehículo.");
+            String css = this.getClass().getResource("/styles/estilos.css").toExternalForm();
+            alert.getDialogPane().getStylesheets().add(css);
+            alert.getDialogPane().getStyleClass().add("dialog-paneConfirmacion");
+            alert.showAndWait();
         }
     }
     

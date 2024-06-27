@@ -13,6 +13,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 
@@ -102,8 +103,6 @@ public class App extends Application {
             System.out.println("Error al encontrar el archivo: " + ex.getMessage());
             ex.printStackTrace();  // Esto imprime la traza completa de la excepción
         }
-       //usuarios = loadUsers();
-       //actualizarUsuarioEnLista();
     }
     
     public static void ActualizarListaCars(){
@@ -115,19 +114,4 @@ public class App extends Application {
             ex.printStackTrace();  // Esto imprime la traza completa de la excepción
         }
     }
-   
-    public static void actualizarUsuarioEnLista() {
-        for (int i = 0; i < usuarios.size(); i++) {
-            User usuario = usuarios.get(i);
-            if (usuario.getUsername().equals(userlogged.getUsername())) {
-                userlogged = usuario;
-            }
-        }
-    }    
-        
-    public ListaVehiculos getCatalogo() {
-        return catalogo;
-    }
-
-
 }
